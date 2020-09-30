@@ -1,0 +1,45 @@
+:root {
+    --primary-color: #6a1b9a;
+    --accent-color: #d81b60;
+}
+
+#card-img {
+    height: 20vh;
+    object-fit: contain;
+}
+
+#logo {
+    height: 10vh;
+    object-fit: contain;
+}
+
+#footer-logo {
+    height: 10vh;
+    object-fit: contain;
+}
+
+#badge, #menu-header, #login-button, #register-button, #buy-button, #checkout-button {
+    background-color: var(--accent-color);
+}
+
+#navbar {
+    background-color: var(--primary-color);
+}
+
+#header {
+    background-color: var(--primary-color);
+    /* width: 100vw; */
+}
+
+#head-link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.list-group-root > .list-group > .list-group-item {
+    padding-left: 30px;
+}
+
+#carousel-controls {
+    color: var(--accent-color);
+}

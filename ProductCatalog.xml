@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ProductCatalog>
+
+    <TVCatalog>
+        <tv id="Microsoft TV">
+            <name>Microsoft TV</name>
+            <price>399.99</price>
+            <image>tv_microsoft.jpg</image>
+            <manufacturer>Microsoft</manufacturer>
+            <condition>New</condition>
+            <discount>25.0</discount>
+            <accessories>
+                <accessory>accessory_1</accessory>
+                <accessory>accessory_2</accessory>
+                <accessory>accessory_3</accessory>
+                <accessory>accessory_4</accessory>
+            </accessories>
+        </tv>
+        <tv id="Sony - 55 inch Class">
+            <name>Sony - 55 inch Class</name>
+            <price>599.99</price>
+            <image>tv_sony.jpg</image>
+            <manufacturer>Sony</manufacturer>
+            <condition>New</condition>
+            <discount>10.0</discount>
+            <accessories>
+                <accessory>accessory_1</accessory>
+                <accessory>accessory_2</accessory>
+                <accessory>accessory_3</accessory>
+                <accessory>accessory_4</accessory>
+            </accessories>
+        </tv>
+        <tv id="Samsung Smart TV 50">
+            <name>Samsung Smart TV 50"</name>
+            <price>329.99</price>
+            <image>tv_samsung.jpg</image>
+            <manufacturer>Samsung</manufacturer>
+            <condition>New</condition>
+            <discount>0.0</discount>
+            <accessories>
+                <accessory>accessory_1</accessory>
+                <accessory>accessory_2</accessory>
+                <accessory>accessory_3</accessory>
+                <accessory>accessory_4</accessory>
+            </accessories>
+        </tv>
+        <tv id="Sony - 77 inch Class">
+            <name>Sony - 77 inch Class</name>
+            <price>3999.99</price>
+            <image>tv_sony1.jpg</image>
+            <manufacturer>Sony</manufacturer>
+            <condition>New</condition>
+            <discount>0.0</discount>
+            <accessories>
+                <accessory>accessory_1</accessory>
+                <accessory>accessory_2</accessory>
+                <accessory>accessory_3</accessory>
+                <accessory>accessory_4</accessory>
+            </accessories>
+        </tv>
+        <tv id="Samsung - 55 inch Class">
+            <name>Samsung - 55 inch Class</name>
+            <price>1249.00</price>
+            <image>tv_samsung1.jpg</image>
+            <manufacturer>Samsung</manufacturer>
+            <condition>New</condition>
+            <discount>0.0</discount>
+            <accessories>
+                <accessory>accessory_1</accessory>
+                <accessory>accessory_2</accessory>
+                <accessory>accessory_3</accessory>
+                <accessory>accessory_4</accessory>
+            </accessories>
+        </tv>
+    </TVCatalog>
+
+    <PhoneCatalog>
+        <phone id="Google Pixel 4 XL">
+            <name>Google Pixel 4 XL</name>
+            <price>720</price>
+            <image>phone_google.jpg</image>
+            <manufacturer>Google</manufacturer>
+            <condition>New</condition>
+            <discount>25.0</discount>
+        </phone>
+        <phone id="Google Pixel 3a">
+            <name>Google Pixel 3a</name>
+            <price>249.99</price>
+            <image>phone_google1.jpg</image>
+            <manufacturer>Google</manufacturer>
+            <condition>New</condition>
+            <discount>25.0</discount>
+        </phone>
+        <phone id="Samsung Galaxy S10">
+            <name>Samsung Galaxy S10</name>
+            <price>599.99</price>
+            <image>phone_samsung.jpg</image>
+            <manufacturer>Samsung</manufacturer>
+            <condition>New</condition>
+            <discount>0</discount>
+        </phone>
+        <phone id="Samsung Galaxy S20">
+            <name>Samsung Galaxy S20</name>
+            <price>949.99</price>
+            <image>phone_samsung1.jpg</image>
+            <manufacturer>Samsung</manufacturer>
+            <condition>New</condition>
+            <discount>0</discount>
+        </phone>
+        <phone id="OnePlus 8">
+            <name>OnePlus 8</name>
+            <price>599.99</price>
+            <image>phone_oneplus.jpg</image>
+            <manufacturer>Samsung</manufacturer>
+            <condition>New</condition>
+            <discount>0</discount>
+        </phone>
+    </PhoneCatalog>
+
+    <SoundSystemCatalog>
+        <soundSystem id="Bose Solo 5">
+            <name>Bose Solo 5</name>
+            <price>199.00</price>
+            <image>soundsystem_bose.jpg</image>
+            <manufacturer>Bose</manufacturer>
+            <condition>New</condition>
+            <discount>15.0</discount>
+        </soundSystem>
+        <soundSystem id="Bose Surround Speakers 700">
+            <name>Bose Surround Speakers 700</name>
+            <price>499.00</price>
+            <image>soundsystem_bose1.jpg</image>
+            <manufacturer>Bose</manufacturer>
+            <condition>New</condition>
+            <discount>15.0</discount>
+        </soundSystem>
+        <soundSystem id="JBL Bar 5.1">
+            <name>JBL Bar 5.1</name>
+            <price>479.15</price>
+            <image>soundsystem_jbl.jpg</image>
+            <manufacturer>JBL</manufacturer>
+            <condition>New</condition>
+            <discount>15.0</discount>
+        </soundSystem>
+        <soundSystem id="JBL Cinema 610">
+            <name>JBL Cinema 610</name>
+            <price>249.95</price>
+            <image>soundsystem_jbl1.jpg</image>
+            <manufacturer>JBL</manufacturer>
+            <condition>New</condition>
+            <discount>15.0</discount>
+        </soundSystem>
+        <soundSystem id="Denon Home Theater Soundbar">
+            <name>Denon Home Theater Soundbar</name>
+            <price>249.95</price>
+            <image>soundsystem_denon.jpg</image>
+            <manufacturer>Denon</manufacturer>
+            <condition>New</condition>
+            <discount>15.0</discount>
+        </soundSystem>
+    </SoundSystemCatalog>
+
+    <LaptopCatalog>
+        <laptop id="Lenovo IdeaPad 3">
+            <name>Lenovo IdeaPad 3</name>
+            <price>518.88</price>
+            <image>laptop_lenovo.jpg</image>
+            <manufacturer>Lenovo</manufacturer>
+            <condition>New</condition>
+            <discount>15.0</discount>
+        </laptop>
+        <laptop id="Lenovo T460s">
+            <name>Lenovo T460s</name>
+            <price>969.19</price>
+            <image>laptop_lenovo1.jpg</image>
+            <manufacturer>Lenovo</manufacturer>
+            <condition>New</condition>
+            <discount>50.0</discount>
+        </laptop>
+        <laptop id="HP Stream">
+            <name>HP Stream</name>
+            <price>499.99</price>
+            <image>laptop_hp.jpg</image>
+            <manufacturer>HP</manufacturer>
+            <condition>New</condition>
+            <discount>0</discount>
+        </laptop>
+        <laptop id="HP Chromebook 14">
+            <name>HP Chromebook 14</name>
+            <price>409.00</price>
+            <image>laptop_hp1.jpg</image>
+            <manufacturer>HP</manufacturer>
+            <condition>New</condition>
+            <discount>0</discount>
+        </laptop>
+        <laptop id="ASUS Chromebook Laptop">
+            <name>ASUS Chromebook Laptop</name>
+            <price>369.00</price>
+            <image>laptop_asus.jpg</image>
+            <manufacturer>ASUS</manufacturer>
+            <condition>New</condition>
+            <discount>0</discount>
+        </laptop>
+    </LaptopCatalog>
+
+    <AccessoryCatalog>
+
+        <accessory id="accessory_1">
+            <name>Google Chromecast</name>
+            <price>35.00</price>
+            <image>accessory_chromecast.jpg</image>
+            <manufacturer>Google</manufacturer>
+            <condition>New</condition>
+            <discount>40.0</discount>
+        </accessory>
+
+        <accessory id="accessory_2">
+            <name>TP-Link USB Wifi Adapter</name>
+            <price>19.99</price>
+            <image>accessory_2.jpg</image>
+            <manufacturer>TP-Link</manufacturer>
+            <condition>New</condition>
+            <discount>40.0</discount>
+        </accessory>
+        
+        <accessory id="accessory_3">
+            <name>AmazonBasics USB 3.0 to Gigabit Ethernet Adapter</name>
+            <price>17.49</price>
+            <image>accessory_3.jpg</image>
+            <manufacturer>Amazon</manufacturer>
+            <condition>New</condition>
+            <discount>40.0</discount>
+        </accessory>
+
+        <accessory id="accessory_4">
+            <name>Remote</name>
+            <price>9.99</price>
+            <image>accessory_4.jpg</image>
+            <manufacturer>Microsoft</manufacturer>
+            <condition>New</condition>
+            <discount>40.0</discount>
+        </accessory>
+
+    </AccessoryCatalog>
+
+</ProductCatalog>
