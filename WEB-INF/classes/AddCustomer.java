@@ -63,7 +63,7 @@ public class AddCustomer extends HttpServlet {
 
 				User user = new User(username,password,usertype);
 				hm.put(username, user);
-			    FileOutputStream fileOutputStream = new FileOutputStream(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt");
+			    FileOutputStream fileOutputStream = new FileOutputStream(TOMCAT_HOME+"\\webapps\\home-hub\\UserDetails.txt");
         		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
            	 	objectOutputStream.writeObject(hm);
 				objectOutputStream.flush();

@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
 		//if the file containts username and passoword user entered user will be directed to home page
 		//else error message will be shown
 		try {
-			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt"));
+			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\home-hub\\UserDetails.txt"));
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 			hm = (HashMap)objectInputStream.readObject();
 		} catch(Exception e) {

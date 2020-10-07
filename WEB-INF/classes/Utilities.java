@@ -199,7 +199,7 @@ public class Utilities extends HttpServlet{
 		String TOMCAT_HOME = System.getProperty("catalina.home");
 			try
 			{		
-				FileInputStream fileInputStream=new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt"));
+				FileInputStream fileInputStream=new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\home-hub\\UserDetails.txt"));
 				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 				hm= (HashMap)objectInputStream.readObject();
 			}
@@ -223,7 +223,7 @@ public class Utilities extends HttpServlet{
 		HashMap<Integer, ArrayList<OrderPayment>> orderPayments = new HashMap<Integer, ArrayList<OrderPayment>>();
 		String TOMCAT_HOME = System.getProperty("catalina.home");
 		try {
-			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
+			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\home-hub\\PaymentDetails.txt"));
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 			orderPayments = (HashMap)objectInputStream.readObject();
 		}
@@ -316,7 +316,7 @@ public class Utilities extends HttpServlet{
 		String TOMCAT_HOME = System.getProperty("catalina.home");
 			// get the payment details file 
 			try {
-				FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
+				FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\home-hub\\PaymentDetails.txt"));
 				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 				orderPayments = (HashMap)objectInputStream.readObject();
 			}
@@ -349,7 +349,7 @@ public class Utilities extends HttpServlet{
 		// add order details into file
 
 		try {	
-			FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
+			FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\home-hub\\PaymentDetails.txt"));
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			objectOutputStream.writeObject(orderPayments);
 			objectOutputStream.flush();

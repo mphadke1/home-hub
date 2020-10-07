@@ -53,7 +53,7 @@ public class CustomerOrders extends HttpServlet {
 			HashMap<Integer, ArrayList<OrderPayment>> orderPayments = new HashMap<Integer, ArrayList<OrderPayment>>();
 			String TOMCAT_HOME = System.getProperty("catalina.home");
 			try {
-				FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
+				FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\home-hub\\PaymentDetails.txt"));
 				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 				orderPayments = (HashMap)objectInputStream.readObject();
 			}
