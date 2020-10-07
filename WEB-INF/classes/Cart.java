@@ -68,6 +68,7 @@ public class Cart extends HttpServlet {
 			+ "                                    <th scope='col'>#</th>"
 			+ "                                    <th scope='col'>Name</th>"
 			+ "                                    <th scope='col'>Price</th>"
+			+ "                                    <th scope='col'>Action</th>"
 			+ "                                </thead>";
 			int i = 1;
 			double totalPrice = 0;
@@ -77,6 +78,7 @@ public class Cart extends HttpServlet {
 				+ "                                    <td>" + i + "</td>"
 				+ "                                    <td>" + oi.getName() + "</td>"
 				+ "                                    <td>$ " + oi.getPrice() + "</td>"
+				+ "                                    <td><button class='btn text-light' id='buy-button'>Remove</button></td>"
 				+ "                                    <input type='hidden' name='orderName' value='" + oi.getName() + "'>"
 				+ "                                    <input type='hidden' name='orderPrice' value='" + oi.getPrice() + "'>"
 				+ "                                </tr>";
@@ -90,6 +92,7 @@ public class Cart extends HttpServlet {
 			+ "                                    <td></td>"
 			+ "                                    <th>Total</td>"
 			+ "                                    <th>$ " + totalString + "</td>"
+			+ "                                    <td></td>"
 			+ "                                </tr>"
 			+ "                            </table>"
 			+ "                        </div>"

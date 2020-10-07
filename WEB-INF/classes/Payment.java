@@ -80,9 +80,17 @@ public class Payment extends HttpServlet {
               "                <div class='m-3 alert alert-info'>"
             + "                    <p>Your order has been stored.</p>"
             + "                    <p class='mb-0'>Your Order Number is <span class='font-weight-bold'>" + orderId + "</span></p>"
-            + "                    <p class='mb-0'>Your Order Date is <span class='font-weight-bold'>" + orderDate + "</span></p>"
-            + "                    <p class='mb-0'>Your Delivery Date is <span class='font-weight-bold'>" + deliveryDate + "</span></p>"
-            + "                    <p class='mb-0'>Your Pickup Type is <span class='font-weight-bold'>" + pickupType + "</span></p>"
+            + "                    <p class='mb-0'>Your Order Date is <span class='font-weight-bold'>" + orderDate + "</span></p>";
+
+			if(pickupType.equalsIgnoreCase("Home Delivery")) {
+				body +=
+				  "                    <p class='mb-0'>Your Delivery Date is <span class='font-weight-bold'>" + deliveryDate + "</span></p>";
+			} else {
+				body +=
+				  "                    <p class='mb-0'>Your order will be ready for pickup on <span class='font-weight-bold'>" + deliveryDate + "</span></p>";
+			}
+			body +=
+              "                    <p class='mb-0'>Your Pickup Type is <span class='font-weight-bold'>" + pickupType + "</span></p>"
             + "                    <p class='mb-0'>You can cancel your order before <span class='font-weight-bold'>" + maxOrderCancellationDate + "</span></p>"
             + "                </div>";
 
