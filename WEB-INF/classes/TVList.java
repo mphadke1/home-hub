@@ -20,13 +20,23 @@ public class TVList extends HttpServlet {
 		String name = null;
 		String CategoryName = request.getParameter("maker");
         
+		HashMap<String, TV> allTVs = new HashMap<String, TV>();
 		HashMap<String, TV> hm = new HashMap<String, TV>();
 
+		try
+		{
+			allTVs = MySqlDataStoreUtilities.getTVs();
+		}
+		catch(Exception e)
+		{
+
+		}
+
 		if(CategoryName == null) {
-			hm.putAll(SaxParserDataStore.tvs);
+			hm.putAll(allTVs);
 			name = "";
 		} else {
-            for(Map.Entry<String, TV> entry : SaxParserDataStore.tvs.entrySet()) {
+            for(Map.Entry<String, TV> entry : allTVs.entrySet()) {
                 if(entry.getValue().getRetailer().equalsIgnoreCase(CategoryName.toLowerCase())) {
                     hm.put(entry.getValue().getId(), entry.getValue());   
                 }
@@ -62,9 +72,17 @@ public class TVList extends HttpServlet {
 			+ "							   <form class='float-right' method='POST' action='Cart'>"
 			+ "                                <input type='hidden' name='name' value='" + entry.getKey() + "'>"
 			+ "                                <input type='hidden' name='type' value='tvs'>"
-			+ "                                <input type='hidden' name='maker' value='" + CategoryName + "'>"
+			+ "                                <input type='hidden' name='maker' value='" + product.getRetailer() + "'>"
 			+ "                                <input type='hidden' name='access' value=''>"
 			+ "                                <button id='buy-button' type='submit' class='btn btn-sm text-light'>Buy Now</button>"
+			+ "                            </form>"
+			+ "							   <form method='POST' action='WriteReview'>"
+			+ "                                <input type='hidden' name='name' value='" + product.getName() + "'>"
+			+ "                                <input type='hidden' name='type' value='tv'>"
+			+ "                                <input type='hidden' name='maker' value='" + product.getRetailer() + "'>"
+			+ "                                <input type='hidden' name='price' value='" + product.getPrice() + "'>"
+			+ "                                <input type='hidden' name='access' value=''>"
+			+ "                                <button id='buy-button' type='submit' class='btn btn-sm text-light'>Write Review</button>"
 			+ "                            </form>"
 			+ "                        </div>"
 			+ "                    </div>"

@@ -20,9 +20,9 @@ public class User implements Serializable{
 	private String usertype;
 	
 	public User(String name, String password, String usertype) {
-		this.name=name;
-		this.password=password;
-		this.usertype=usertype;
+		this.name = name;
+		this.password = password;
+		this.usertype = usertype;
 	}
 
 	public int getId() {

@@ -46,9 +46,11 @@ public class Registration extends HttpServlet {
 			//get the user details from file 
 
 			try {
-				FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt"));
-				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-				hm= (HashMap)objectInputStream.readObject();
+				// FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt"));
+				// ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
+				// hm= (HashMap)objectInputStream.readObject();
+
+				hm = MySqlDataStoreUtilities.selectUser();
 			} catch(Exception e) {
 				
 			}
@@ -63,12 +65,13 @@ public class Registration extends HttpServlet {
 
 				User user = new User(username,password,usertype);
 				hm.put(username, user);
-			    FileOutputStream fileOutputStream = new FileOutputStream(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt");
-        		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-           	 	objectOutputStream.writeObject(hm);
-				objectOutputStream.flush();
-				objectOutputStream.close();       
-				fileOutputStream.close();
+				MySqlDataStoreUtilities.insertUser(username,password,repassword,usertype);
+			    // FileOutputStream fileOutputStream = new FileOutputStream(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt");
+        		// ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+           	 	// objectOutputStream.writeObject(hm);
+				// objectOutputStream.flush();
+				// objectOutputStream.close();       
+				// fileOutputStream.close();
 				HttpSession session = request.getSession(true);				
 				session.setAttribute("login_msg", "Your "+usertype+" account has been created. Please login");
 				if(!utility.isLoggedin()){
@@ -134,8 +137,8 @@ public class Registration extends HttpServlet {
     	+ "                    <label for='usertype'>User Type</label>"
     	+ "                    <select class='form-control custom-select' id='usertype' name='usertype'>"
     	+ "                        <option value='customer'>Customer</option>"
-    	+ "                        <option value='retailer'>Store Manager</option>"
-    	+ "                        <option value='manager'>Salesman</option>"
+    	+ "                        <option value='storeManager'>Store Manager</option>"
+    	+ "                        <option value='salesman'>Salesman</option>"
     	+ "                    </select>"
     	+ "                </div>"
     	+ "                <button id='register-button' type='submit' class='btn text-light float-right'>Register</button><br>"

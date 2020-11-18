@@ -32,6 +32,14 @@ public class Payment extends HttpServlet {
 		String userAddress = request.getParameter("userAddress");
 		String creditCardNo = request.getParameter("creditCardNo");
 		String pickupType = request.getParameter("pickupType");
+		String storeId = request.getParameter("storeId");
+
+		Store store = null;
+		if(pickupType == "Home Delivery") {
+			storeId = "0";
+		} else {
+			store = MySqlDataStoreUtilities.getStoreById(Integer.parseInt(storeId));
+		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		String orderDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
@@ -65,7 +73,8 @@ public class Payment extends HttpServlet {
                     orderDate,
                     deliveryDate,
                     maxOrderCancellationDate,
-                    pickupType
+                    pickupType,
+					storeId
                 );
 			}
 
@@ -82,8 +91,17 @@ public class Payment extends HttpServlet {
             + "                    <p class='mb-0'>Your Order Number is <span class='font-weight-bold'>" + orderId + "</span></p>"
             + "                    <p class='mb-0'>Your Order Date is <span class='font-weight-bold'>" + orderDate + "</span></p>"
             + "                    <p class='mb-0'>Your Delivery Date is <span class='font-weight-bold'>" + deliveryDate + "</span></p>"
-            + "                    <p class='mb-0'>Your Pickup Type is <span class='font-weight-bold'>" + pickupType + "</span></p>"
-            + "                    <p class='mb-0'>You can cancel your order before <span class='font-weight-bold'>" + maxOrderCancellationDate + "</span></p>"
+            + "                    <p class='mb-0'>Your Pickup Type is <span class='font-weight-bold'>" + pickupType + "</span></p>";
+			if(pickupType.equals("Store Pickup") && store != null) {
+				body += 
+				  "                    <p class='mb-0'><span class='font-weight-bold'>Store Details:</span></p>"
+				+ "                    <p class='mb-0'>Street: <span class='font-weight-bold'>" + store.getStreet() + "</span></p>"
+				+ "                    <p class='mb-0'>City: <span class='font-weight-bold'>" + store.getCity() + "</span></p>"
+				+ "                    <p class='mb-0'>State: <span class='font-weight-bold'>" + store.getState() + "</span></p>"
+				+ "                    <p class='mb-0'>Zipcode: <span class='font-weight-bold'>" + store.getZipcode() + "</span></p>";
+			}
+			body +=
+              "                    <p class='mb-0'>You can cancel your order before <span class='font-weight-bold'>" + maxOrderCancellationDate + "</span></p>"
             + "                </div>";
 
 			// pw.print("<div id='content'><div class='post'><h2 class='title meta'>");

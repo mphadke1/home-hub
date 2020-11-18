@@ -11,13 +11,31 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JQuery DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <!-- JQuery UI -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+        crossorigin="anonymous"></script>
     <!-- Font Awesome Script -->
     <script src="https://kit.fontawesome.com/831e120a98.js" crossorigin="anonymous"></script>
+    <!-- Google Charts API -->
+    <script type='text/javascript' src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
 
-    <div id="header" class="text-center mb-0 py-3 text-light">
-        <a id="head-link" href="Home"><h1><img id="logo" src="images/logo.png" alt="Logo" class="mr-1">Best Deal</h1></a>
-        <p class="mb-0">World's Largest Online Electronic Center</p>
+    <div id="header" class="row">
+        <div class="text-start mb-0 py-3 pl-3 pl-5 text-light col-6">
+            <a id="head-link" href="Home">
+                <h1><img id="logo" src="images/logo.png" alt="Logo" class="mr-1">Best Deal</h1>
+            </a>
+            <p class="mb-0">World's Largest Online Electronic Center</p>
+        </div>
+        <div class="col-6 text-end align-self-center">
+            <input id="search" type="autocomplete" class="form-control w-50 ml-auto mr-4" placeholder="Search Products">
+        </div>
     </div>

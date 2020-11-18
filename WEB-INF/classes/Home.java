@@ -25,7 +25,6 @@ public class Home extends HttpServlet {
 		utility.printHtml("LeftNavigationBar.html");
 		utility.printHtml("Content.html");
 		utility.printHtml("Footer.html");
-		System.out.println("OrderPayment Size - " + utility.getOrderPaymentSize());
 	}
 
 }

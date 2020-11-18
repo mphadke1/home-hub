@@ -95,7 +95,7 @@ public class ProductCatalog extends HttpServlet {
         + "                        <tbody>";
         
 
-        for(Map.Entry<String, TV> entry : SaxParserDataStore.tvs.entrySet()) {
+        for(Map.Entry<String, TV> entry : MySqlDataStoreUtilities.getTVs().entrySet()) {
             TV tv = entry.getValue();
 
             body +=
@@ -116,7 +116,7 @@ public class ProductCatalog extends HttpServlet {
             + "                            </tr>";
         }
 
-        for(Map.Entry<String, SoundSystem> entry : SaxParserDataStore.soundSystems.entrySet()) {
+        for(Map.Entry<String, SoundSystem> entry : MySqlDataStoreUtilities.getSoundSystems().entrySet()) {
             SoundSystem soundSystem = entry.getValue();
 
             body +=
@@ -137,7 +137,7 @@ public class ProductCatalog extends HttpServlet {
             + "                            </tr>";
         }
 
-        for(Map.Entry<String, Phone> entry : SaxParserDataStore.phones.entrySet()) {
+        for(Map.Entry<String, Phone> entry : MySqlDataStoreUtilities.getPhones().entrySet()) {
             Phone phone = entry.getValue();
 
             body +=
@@ -158,7 +158,7 @@ public class ProductCatalog extends HttpServlet {
             + "                            </tr>";
         }
 
-        for(Map.Entry<String, Laptop> entry : SaxParserDataStore.laptops.entrySet()) {
+        for(Map.Entry<String, Laptop> entry : MySqlDataStoreUtilities.getLaptops().entrySet()) {
             Laptop laptop = entry.getValue();
 
             body +=
@@ -179,7 +179,7 @@ public class ProductCatalog extends HttpServlet {
             + "                            </tr>";
         }
 
-        for(Map.Entry<String, VoiceAssistant> entry : SaxParserDataStore.voiceAssistants.entrySet()) {
+        for(Map.Entry<String, VoiceAssistant> entry : MySqlDataStoreUtilities.getVoiceAssistants().entrySet()) {
             VoiceAssistant voiceAssistant = entry.getValue();
 
             body +=
@@ -200,7 +200,7 @@ public class ProductCatalog extends HttpServlet {
             + "                            </tr>";
         }
 
-        for(Map.Entry<String, Wearable> entry : SaxParserDataStore.wearables.entrySet()) {
+        for(Map.Entry<String, Wearable> entry : MySqlDataStoreUtilities.getWearables().entrySet()) {
             Wearable wearable = entry.getValue();
 
             body +=

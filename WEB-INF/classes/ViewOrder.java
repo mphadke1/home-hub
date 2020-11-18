@@ -1,13 +1,14 @@
+import java.io.*;
+import java.util.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.*;
-import java.io.*;
 
 @WebServlet("/ViewOrder")
 
@@ -92,9 +93,11 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				pw.print("<input type='hidden' name='orderId' value='"+orderId+"'>");
 				//get the order details from file
 				try {
-					FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
-					ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-					orderPayments = (HashMap)objectInputStream.readObject();
+					// FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
+					// ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
+					// orderPayments = (HashMap)objectInputStream.readObject();
+				
+					orderPayments=MySqlDataStoreUtilities.selectOrder();
 				}
 				catch(Exception e) {
 			
@@ -193,22 +196,42 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				ArrayList<OrderPayment> listOrderPayment =new ArrayList<OrderPayment>();
 				//get the order from file
 				try {
-					FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
-					ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-					orderPayments = (HashMap)objectInputStream.readObject();
+					// FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
+					// ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
+					// orderPayments = (HashMap)objectInputStream.readObject();
+				
+					orderPayments=MySqlDataStoreUtilities.selectOrder();
 				} catch(Exception e) {
 			
 				}
 				//get the exact order with same ordername and add it into cancel list to remove it later
 				for (OrderPayment oi : orderPayments.get(orderId)) {
-                    if(oi.getOrderName().equals(orderName) && oi.getUserName().equals(username)) {
-                        listOrderPayment.add(oi);
-                        body +=
-                          "                         <div class='alert alert-info'>"
-                        + "                             Your order has been cancelled"
-                        + "                         </div>";
-                        // pw.print("<h4 style='color:red'>Your Order is Cancelled</h4>");								
-                    }
+					String maxDate = oi.getMaxOrderCancellationDate();
+					SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+
+					try {
+						Date formattedMaxDate = new SimpleDateFormat("MM/dd/yyyy").parse(maxDate);
+
+						String currentDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
+						Date formattedCurrentDate = new SimpleDateFormat("MM/dd/yyyy").parse(currentDate);
+
+						if(formattedMaxDate.compareTo(formattedCurrentDate) > 0)
+						{
+							MySqlDataStoreUtilities.deleteOrder(orderId,orderName);
+							listOrderPayment.add(oi);
+							body +=
+							  "                         <div class='alert alert-info'>"
+							+ "                             Your order has been cancelled"
+							+ "                         </div>";
+						} else {
+							body +=
+							  "                         <div class='alert alert-danger'>"
+							+ "                             Less than 5 days left for delivery. You cannot cancel order now."
+							+ "                         </div>";
+						}
+					} catch(Exception e) {
+
+					}
                 }
 				//remove all the orders from hashmap that exist in cancel list
 				orderPayments.get(orderId).removeAll(listOrderPayment);
@@ -216,16 +239,16 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
                     orderPayments.remove(orderId);
                 }
 				//save the updated hashmap with removed order to the file	
-				try {	
-					FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
-					ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-					objectOutputStream.writeObject(orderPayments);
-					objectOutputStream.flush();
-					objectOutputStream.close();       
-					fileOutputStream.close();
-				} catch(Exception e) {
+				// try {	
+				// 	FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
+				// 	ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+				// 	objectOutputStream.writeObject(orderPayments);
+				// 	objectOutputStream.flush();
+				// 	objectOutputStream.close();       
+				// 	fileOutputStream.close();
+				// } catch(Exception e) {
 				
-				}	
+				// }	
 			} else {
                 body +=
                   "                <div class='alert alert-danger'>"

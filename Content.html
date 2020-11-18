@@ -7,32 +7,52 @@
             </div>
             <h2>Best Sellers</h2>
             <div class="row row-cols-2">
-                <div class="col-5 mx-auto card p-3">
-                    <img id="card-img" src="images/tv_microsoft.jpg" alt="Microsoft TV" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Microsoft TV</h5>
-                        <p class="card-text">$89.99</p>
-                        <form method="POST" action="Cart">
-                            <input type='hidden' name='name' value='Microsoft TV'>
-                            <input type='hidden' name='type' value='tvs'>
-                            <input type='hidden' name='maker' value='microsoft'>
-                            <input type='hidden' name='access' value=''>
-                            <button type="submit" id="buy-button" class="btn btn-sm text-light float-right">Buy Now</button>
-                        </form>
+                <div class="col-6 my-2">
+                    <div class="card p-3">
+                        <img id="card-img" src="images/tv_microsoft.jpg" alt="Microsoft TV" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Microsoft TV</h5>
+                            <p class="card-text">$89.99</p>
+                            <form method="POST" action="Cart">
+                                <input type='hidden' name='name' value='Microsoft TV'>
+                                <input type='hidden' name='type' value='tvs'>
+                                <input type='hidden' name='maker' value='microsoft'>
+                                <input type='hidden' name='access' value=''>
+                                <button type="submit" id="buy-button" class="btn btn-sm text-light float-right">Buy Now</button>
+                            </form>
+                            <form method="POST" action="WriteReview">
+                                <input type='hidden' name='name' value='Microsoft TV'>
+                                <input type='hidden' name='type' value='tv'>
+                                <input type='hidden' name='maker' value='microsoft'>
+                                <input type='hidden' name='access' value=''>
+                                <input type='hidden' name='price' value='89.99'>
+                                <button type="submit" id="buy-button" class="btn btn-sm text-light">Write Review</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="col-5 mx-auto card p-3">
-                    <img id="card-img" src="images/phone_samsung1.jpg" alt="Microsoft TV" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Samsung Galaxy S20</h5>
-                        <p class="card-text">$949.99</p>
-                        <form method="POST" action="Cart">
-                            <input type='hidden' name='name' value='Samsung Galaxy S20'>
-                            <input type='hidden' name='type' value='tvs'>
-                            <input type='hidden' name='maker' value='Samsung'>
-                            <input type='hidden' name='access' value=''>
-                            <button type="submit" id="buy-button" class="btn btn-sm text-light float-right">Buy Now</button>
-                        </form>
+                <div class="col-6 my-2">
+                    <div class="card p-3">
+                        <img id="card-img" src="images/phone_samsung1.jpg" alt="Microsoft TV" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Samsung Galaxy S20</h5>
+                            <p class="card-text">$949.99</p>
+                            <form class="float-right" method="POST" action="Cart">
+                                <input type='hidden' name='name' value='Samsung Galaxy S20'>
+                                <input type='hidden' name='type' value='phones'>
+                                <input type='hidden' name='maker' value='Samsung'>
+                                <input type='hidden' name='access' value=''>
+                                <button type="submit" id="buy-button" class="btn btn-sm text-light">Buy Now</button>
+                            </form>
+                            <form method="POST" action="WriteReview">
+                                <input type='hidden' name='name' value='Microsoft TV'>
+                                <input type='hidden' name='type' value='phone'>
+                                <input type='hidden' name='maker' value='microsoft'>
+                                <input type='hidden' name='price' value='949.99'>
+                                <input type='hidden' name='access' value=''>
+                                <button type="submit" id="buy-button" class="btn btn-sm text-light">Write Review</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

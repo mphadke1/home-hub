@@ -19,18 +19,18 @@ import java.io.*;
 
 @WebServlet("/Utilities")
 
-/* 
+/*
 	Utilities class contains class variables of type HttpServletRequest, PrintWriter,String and HttpSession.
 
 	Utilities class has a constructor with  HttpServletRequest, PrintWriter variables.
-	  
+
 */
 
 public class Utilities extends HttpServlet{
 	HttpServletRequest req;
 	PrintWriter pw;
 	String url;
-	HttpSession session; 
+	HttpSession session;
 	public Utilities(HttpServletRequest req, PrintWriter pw) {
 		this.req = req;
 		this.pw = pw;
@@ -58,28 +58,37 @@ public class Utilities extends HttpServlet{
 		+ "    </button>"
 		+ "    <div class='collapse navbar-nav navbar-collapse' id='navbarSupportedContent'>"
 		+ "        <div class='nav-item mr-sm-auto'>"
-		+ "            <a class='nav-link' href='AccessoryList'>Accessories</a>"
+		+ "            <a class='nav-link' href='Trending'>Trending</a>"
 		+ "        </div>";
 
 		if(isLoggedin()) {
-			switch(getUserType()) {
-				case "manager":
-					navbar += 
-					  "        <div class='nav-item'>"
+			switch(getUserType().toLowerCase()) {
+				case "storemanager":
+					navbar +=
+					  "		   <div class='nav-item dropdown'>"
+					+ "		   	   <a class='nav-link dropdown-toggle' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
+					+ "		   	       Reports"
+					+ "		   	   </a>"
+					+ "		   	   <div class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>"
+					+ "		   	   <a class='dropdown-item' href='Inventory'>Inventory Report</a>"
+					+ "		   	   <a class='dropdown-item' href='SalesReport'>Sales Report</a>"
+					+ "		   	   </div>"
+					+ "		   </div>"
+					+ "        <div class='nav-item'>"
 					+ "            <a class='nav-link' href='AddCustomer'>Add Customers</a>"
 					+ "        </div>"
 					+ "        <div class='nav-item'>"
 					+ "            <a class='nav-link' href='CustomerOrders'>Customer Orders</a>"
 					+ "        </div>";
 					break;
-				case "retailer":
-					navbar += 
+				case "salesman":
+					navbar +=
 					  "        <div class='nav-item'>"
 					+ "            <a class='nav-link' href='ProductCatalog'>Product Catalog</a>"
 					+ "        </div>";
 					break;
 			}
-			navbar += 
+			navbar +=
 			  "        <div class='nav-item'>"
 			+ "            <a class='nav-link' href='ViewOrder'>View Orders</a>"
 			+ "        </div>"
@@ -91,15 +100,15 @@ public class Utilities extends HttpServlet{
 			+ "        </div>"
 			+ "        <div class='nav-item'>"
 			+ "            <a class='nav-link' href='Logout'>Logout</a>"
-			+ "        </div>" 
+			+ "        </div>"
 			+ "        <button class='btn mx-0 px-0 nav-item content'>"
 			+ "            <a class='nav-link' href='Cart'>Cart <span id='badge' class='badge'>" + getCartCount() + "</span></a>"
 			+ "        </button>"
 			+ "    </div>"
 			+ "</nav>";
-			
+
 		} else {
-			navbar += 
+			navbar +=
 			  "        <div class='nav-item'>"
 			+ "            <a class='nav-link' href='Login'>Login</a>"
 			+ "        </div>"
@@ -119,7 +128,7 @@ public class Utilities extends HttpServlet{
 		String result = HtmlToString(file);
 		pw.print(result);
 	}
-	
+
 
 	/*  getFullURL Function - Reconstructs the URL user request  */
 
@@ -156,11 +165,11 @@ public class Utilities extends HttpServlet{
 				sb.append(charArray, 0, numCharsRead);
 			}
 			result = sb.toString();
-		} 
+		}
 		catch (Exception e) {
 		}
 		return result;
-	} 
+	}
 
 	/*  logout Function removes the username , usertype attributes from the session variable*/
 
@@ -168,7 +177,7 @@ public class Utilities extends HttpServlet{
 		session.removeAttribute("username");
 		session.removeAttribute("usertype");
 	}
-	
+
 	/*  logout Function checks whether the user is loggedIn or Not*/
 
 	public boolean isLoggedin(){
@@ -178,41 +187,39 @@ public class Utilities extends HttpServlet{
 	}
 
 	/*  username Function returns the username from the session variable.*/
-	
+
 	public String username(){
 		if (session.getAttribute("username")!=null)
 			return session.getAttribute("username").toString();
 		return null;
 	}
-	
+
 	/*  usertype Function returns the usertype from the session variable.*/
 	public String usertype(){
 		if (session.getAttribute("usertype")!=null)
 			return session.getAttribute("usertype").toString();
 		return null;
 	}
-	
+
 	/*  getUser Function checks the user is a customer or retailer or manager and returns the user class variable.*/
 	public User getUser(){
 		String usertype = usertype();
-		HashMap<String, User> hm=new HashMap<String, User>();
+		HashMap<String, User> hm = new HashMap<String, User>();
 		String TOMCAT_HOME = System.getProperty("catalina.home");
 			try
-			{		
-				FileInputStream fileInputStream=new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt"));
-				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-				hm= (HashMap)objectInputStream.readObject();
+			{
+				hm = MySqlDataStoreUtilities.selectUser();
 			}
 			catch(Exception e)
 			{
-			}	
+			}
 		User user = hm.get(username());
 		return user;
 	}
-	
+
 	/*  getCustomerOrders Function gets  the Orders for the user*/
 	public ArrayList<OrderItem> getCustomerOrders(){
-		ArrayList<OrderItem> order = new ArrayList<OrderItem>(); 
+		ArrayList<OrderItem> order = new ArrayList<OrderItem>();
 		if(OrdersHashMap.orders.containsKey(username()))
 			order= OrdersHashMap.orders.get(username());
 		return order;
@@ -223,19 +230,17 @@ public class Utilities extends HttpServlet{
 		HashMap<Integer, ArrayList<OrderPayment>> orderPayments = new HashMap<Integer, ArrayList<OrderPayment>>();
 		String TOMCAT_HOME = System.getProperty("catalina.home");
 		try {
-			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
-			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-			orderPayments = (HashMap)objectInputStream.readObject();
+			orderPayments = MySqlDataStoreUtilities.selectOrder();
 		}
 		catch(Exception e) {
-		
+
 		}
 		int size=0;
 		for(Map.Entry<Integer, ArrayList<OrderPayment>> entry : orderPayments.entrySet()){
 			System.out.println(entry);
 			size++;
 		}
-		return size;		
+		return size;
 	}
 
 	/*  CartCount Function gets  the size of User Orders*/
@@ -244,11 +249,11 @@ public class Utilities extends HttpServlet{
 			return getCustomerOrders().size();
 		return 0;
 	}
-	
+
 	/* StoreProduct Function stores the Purchased product in Orders HashMap according to the User Names.*/
 
 	public void storeProduct(String name, String type, String maker, String acc){
-		if(!OrdersHashMap.orders.containsKey(username())){	
+		if(!OrdersHashMap.orders.containsKey(username())){
 			ArrayList<OrderItem> arr = new ArrayList<OrderItem>();
 			OrdersHashMap.orders.put(username(), arr);
 		}
@@ -256,48 +261,48 @@ public class Utilities extends HttpServlet{
 		OrderItem orderitem;
 		switch(type.toLowerCase()) {
 			case "accessories":
-				Accessory accessory = SaxParserDataStore.accessories.get(name); 
+				Accessory accessory = SaxParserDataStore.accessories.get(name);
 				orderitem = new OrderItem(accessory.getName(), accessory.getPrice(), accessory.getImage(), accessory.getRetailer());
 				orderItems.add(orderitem);
 				break;
 			case "tvs":
 				TV tv;
-				tv = SaxParserDataStore.tvs.get(name);
+				tv = MySqlDataStoreUtilities.getTVs().get(name);
 				orderitem = new OrderItem(tv.getName(), tv.getPrice(), tv.getImage(), tv.getRetailer());
 				orderItems.add(orderitem);
 				break;
 			case "soundsystems":
 				SoundSystem soundSystem;
-				soundSystem = SaxParserDataStore.soundSystems.get(name);
+				soundSystem = MySqlDataStoreUtilities.getSoundSystems().get(name);
 				orderitem = new OrderItem(soundSystem.getName(), soundSystem.getPrice(), soundSystem.getImage(), soundSystem.getRetailer());
 				orderItems.add(orderitem);
 				break;
 			case "phones":
 				Phone phone;
-				phone = SaxParserDataStore.phones.get(name);
+				phone = MySqlDataStoreUtilities.getPhones().get(name);
 				orderitem = new OrderItem(phone.getName(), phone.getPrice(), phone.getImage(), phone.getRetailer());
 				orderItems.add(orderitem);
 				break;
 			case "laptops":
 				Laptop laptop;
-				laptop = SaxParserDataStore.laptops.get(name);
+				laptop = MySqlDataStoreUtilities.getLaptops().get(name);
 				orderitem = new OrderItem(laptop.getName(), laptop.getPrice(), laptop.getImage(), laptop.getRetailer());
 				orderItems.add(orderitem);
 				break;
 			case "voiceAssistants":
 				VoiceAssistant voiceAssistant;
-				voiceAssistant = SaxParserDataStore.voiceAssistants.get(name);
+				voiceAssistant = MySqlDataStoreUtilities.getVoiceAssistants().get(name);
 				orderitem = new OrderItem(voiceAssistant.getName(), voiceAssistant.getPrice(), voiceAssistant.getImage(), voiceAssistant.getRetailer());
 				orderItems.add(orderitem);
 				break;
 			case "wearables":
 				Wearable wearable;
-				wearable = SaxParserDataStore.wearables.get(name);
+				wearable = MySqlDataStoreUtilities.getWearables().get(name);
 				orderitem = new OrderItem(wearable.getName(), wearable.getPrice(), wearable.getImage(), wearable.getRetailer());
 				orderItems.add(orderitem);
 				break;
 		}
-		
+
 	}
 
 	// store the payment details for orders
@@ -310,29 +315,29 @@ public class Utilities extends HttpServlet{
 			String orderDate,
 			String deliveryDate,
 			String maxOrderCancellationDate,
-			String pickupType) {
+			String pickupType,
+			String storeId
+		) {
 
 		HashMap<Integer, ArrayList<OrderPayment>> orderPayments= new HashMap<Integer, ArrayList<OrderPayment>>();
 		String TOMCAT_HOME = System.getProperty("catalina.home");
-			// get the payment details file 
-			try {
-				FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
-				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-				orderPayments = (HashMap)objectInputStream.readObject();
-			}
-			catch(Exception e) {
-			
-			}
-			if(orderPayments == null) {
-				orderPayments = new HashMap<Integer, ArrayList<OrderPayment>>();
-			}
-			// if there exist order id already add it into same list for order id or create a new record with order id
-			
-			if(!orderPayments.containsKey(orderId)){	
-				ArrayList<OrderPayment> arr = new ArrayList<OrderPayment>();
-				orderPayments.put(orderId, arr);
-			}
-		ArrayList<OrderPayment> listOrderPayment = orderPayments.get(orderId);		
+			// get the payment details file
+		try {
+			orderPayments = MySqlDataStoreUtilities.selectOrder();
+		}
+		catch(Exception e) {
+
+		}
+		if(orderPayments == null) {
+			orderPayments = new HashMap<Integer, ArrayList<OrderPayment>>();
+		}
+		// if there exist order id already add it into same list for order id or create a new record with order id
+
+		if(!orderPayments.containsKey(orderId)){
+			ArrayList<OrderPayment> arr = new ArrayList<OrderPayment>();
+			orderPayments.put(orderId, arr);
+		}
+		ArrayList<OrderPayment> listOrderPayment = orderPayments.get(orderId);
 		OrderPayment orderpayment = new OrderPayment(
 			orderId,
 			username(),
@@ -343,24 +348,77 @@ public class Utilities extends HttpServlet{
 			orderDate,
 			deliveryDate,
 			maxOrderCancellationDate,
-			pickupType);
-		listOrderPayment.add(orderpayment);	
-			
+			pickupType,
+			storeId
+		);
+		listOrderPayment.add(orderpayment);
+
 		// add order details into file
 
-		try {	
-			FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-			objectOutputStream.writeObject(orderPayments);
-			objectOutputStream.flush();
-			objectOutputStream.close();       
-			fileOutputStream.close();
+		try {
+			MySqlDataStoreUtilities.insertOrder(
+				orderId,
+				username(),
+				orderName,
+				orderPrice,
+				userAddress,
+				creditCardNo,
+				orderDate,
+				deliveryDate,
+				maxOrderCancellationDate,
+				pickupType,
+				storeId
+			);
 		}
 		catch(Exception e) {
 			System.out.println("inside exception file not written properly");
-		}	
+		}
 	}
-	
+
+	public String storeReview(String productname,String producttype,String productmaker,String reviewrating,String reviewdate,String  reviewtext,String reatilerpin,String price,String city, String reviewerAge, String reviewerGender, String reviewerOccupation)
+	{
+		String message = MongoDBDataStoreUtilities.insertReview(
+			productname,
+			username(),
+			producttype,
+			productmaker,
+			reviewrating,
+			reviewdate,
+			reviewtext,
+			reatilerpin,
+			price,
+			city,
+			reviewerAge,
+			reviewerGender,
+			reviewerOccupation
+		);
+		if(!message.equals("Successfull")) {
+			return "UnSuccessfull";
+		} else {
+			HashMap<String, ArrayList<Review>> reviews= new HashMap<String, ArrayList<Review>>();
+			try {
+				reviews = MongoDBDataStoreUtilities.selectReview();
+			} catch(Exception e) { }
+
+			if(reviews == null) {
+				reviews = new HashMap<String, ArrayList<Review>>();
+			}
+			// if there exist product review already add it into same list for productname or create a new record with product name
+
+			if(!reviews.containsKey(productname)) {
+				ArrayList<Review> arr = new ArrayList<Review>();
+				reviews.put(productname, arr);
+			}
+			ArrayList<Review> listReview = reviews.get(productname);
+			Review review = new Review(productname,username(),producttype,productmaker,reviewrating,reviewdate,reviewtext,reatilerpin,price,city,reviewerAge,reviewerGender,reviewerOccupation);
+			listReview.add(review);
+
+			// add Reviews into database
+
+			return "Successfull";
+		}
+	}
+
 	/* getSoundSystems Functions returns the Hashmap with all consoles in the store.*/
 
 	public HashMap<String, SoundSystem> getSoundSystems(){
@@ -368,7 +426,7 @@ public class Utilities extends HttpServlet{
 			hm.putAll(SaxParserDataStore.soundSystems);
 			return hm;
 	}
-	
+
 	/* getPhones Functions returns the Hashmap with all consoles in the store.*/
 
 	public HashMap<String, Phone> getPhones(){
@@ -376,7 +434,7 @@ public class Utilities extends HttpServlet{
 			hm.putAll(SaxParserDataStore.phones);
 			return hm;
 	}
-	
+
 	/* getLaptops Functions returns the Hashmap with all consoles in the store.*/
 
 	public HashMap<String, Laptop> getLaptops(){
@@ -384,7 +442,7 @@ public class Utilities extends HttpServlet{
 			hm.putAll(SaxParserDataStore.laptops);
 			return hm;
 	}
-	
+
 	/* getVoiceAssistants Functions returns the Hashmap with all consoles in the store.*/
 
 	public HashMap<String, VoiceAssistant> getVoiceAssistants(){
@@ -392,7 +450,7 @@ public class Utilities extends HttpServlet{
 			hm.putAll(SaxParserDataStore.voiceAssistants);
 			return hm;
 	}
-	
+
 	/* getWearables Functions returns the Hashmap with all consoles in the store.*/
 
 	public HashMap<String, Wearable> getWearables(){
@@ -413,47 +471,47 @@ public class Utilities extends HttpServlet{
 
 	public ArrayList<String> getProductsTVs(){
 		ArrayList<String> ar = new ArrayList<String>();
-		for(Map.Entry<String, TV> entry : getTVs().entrySet()){			
+		for(Map.Entry<String, TV> entry : getTVs().entrySet()){
 			ar.add(entry.getValue().getName());
 		}
 		return ar;
 	}
-	
+
 	/* getProductsSoundSystems Functions returns the Arraylist of SoundSystems in the store.*/
 
 	public ArrayList<String> getProductsSoundSystems(){
 		ArrayList<String> ar = new ArrayList<String>();
-		for(Map.Entry<String, SoundSystem> entry : getSoundSystems().entrySet()){			
+		for(Map.Entry<String, SoundSystem> entry : getSoundSystems().entrySet()){
 			ar.add(entry.getValue().getName());
 		}
 		return ar;
 	}
-	
+
 	/* getProductsPhones Functions returns the Arraylist of Phones in the store.*/
 
 	public ArrayList<String> getProductsPhones(){
 		ArrayList<String> ar = new ArrayList<String>();
-		for(Map.Entry<String, Phone> entry : getPhones().entrySet()){			
+		for(Map.Entry<String, Phone> entry : getPhones().entrySet()){
 			ar.add(entry.getValue().getName());
 		}
 		return ar;
 	}
-	
+
 	/* getProductsLaptops Functions returns the Arraylist of Laptop in the store.*/
 
 	public ArrayList<String> getProductsLaptops(){
 		ArrayList<String> ar = new ArrayList<String>();
-		for(Map.Entry<String, Laptop> entry : getLaptops().entrySet()){			
+		for(Map.Entry<String, Laptop> entry : getLaptops().entrySet()){
 			ar.add(entry.getValue().getName());
 		}
 		return ar;
 	}
-	
+
 	/* getProductsVoiceAssistants Functions returns the Arraylist of VoiceAssistant in the store.*/
 
 	public ArrayList<String> getProductsVoiceAssistants(){
 		ArrayList<String> ar = new ArrayList<String>();
-		for(Map.Entry<String, VoiceAssistant> entry : getVoiceAssistants().entrySet()){			
+		for(Map.Entry<String, VoiceAssistant> entry : getVoiceAssistants().entrySet()){
 			ar.add(entry.getValue().getName());
 		}
 		return ar;
@@ -463,7 +521,7 @@ public class Utilities extends HttpServlet{
 
 	public ArrayList<String> getProductsWearables(){
 		ArrayList<String> ar = new ArrayList<String>();
-		for(Map.Entry<String, Wearable> entry : getWearables().entrySet()){			
+		for(Map.Entry<String, Wearable> entry : getWearables().entrySet()){
 			ar.add(entry.getValue().getName());
 		}
 		return ar;

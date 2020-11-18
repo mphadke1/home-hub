@@ -20,13 +20,23 @@ public class VoiceAssistantList extends HttpServlet {
 		String name = null;
 		String CategoryName = request.getParameter("maker");
         
+		HashMap<String, VoiceAssistant> allVoiceAssistants = new HashMap<String, VoiceAssistant>();
 		HashMap<String, VoiceAssistant> hm = new HashMap<String, VoiceAssistant>();
 
+		try
+		{
+			allVoiceAssistants = MySqlDataStoreUtilities.getVoiceAssistants();
+		}
+		catch(Exception e)
+		{
+
+		}
+
 		if(CategoryName == null) {
-			hm.putAll(SaxParserDataStore.voiceAssistants);
+			hm.putAll(allVoiceAssistants);
 			name = "";
 		} else {
-            for(Map.Entry<String, VoiceAssistant> entry : SaxParserDataStore.voiceAssistants.entrySet()) {
+            for(Map.Entry<String, VoiceAssistant> entry : allVoiceAssistants.entrySet()) {
                 if(entry.getValue().getRetailer().equalsIgnoreCase(CategoryName.toLowerCase())) {
                     hm.put(entry.getValue().getId(), entry.getValue());   
                 }
@@ -62,9 +72,17 @@ public class VoiceAssistantList extends HttpServlet {
 			+ "							   <form class='float-right' method='POST' action='Cart'>"
 			+ "                                <input type='hidden' name='name' value='" + entry.getKey() + "'>"
 			+ "                                <input type='hidden' name='type' value='voiceAssistants'>"
-			+ "                                <input type='hidden' name='maker' value='" + CategoryName + "'>"
+			+ "                                <input type='hidden' name='maker' value='" + product.getRetailer() + "'>"
 			+ "                                <input type='hidden' name='access' value=''>"
 			+ "                                <button id='buy-button' type='submit' class='btn btn-sm text-light'>Buy Now</button>"
+			+ "                            </form>"
+			+ "							   <form method='POST' action='WriteReview'>"
+			+ "                                <input type='hidden' name='name' value='" + product.getName() + "'>"
+			+ "                                <input type='hidden' name='type' value='voiceAssistant'>"
+			+ "                                <input type='hidden' name='maker' value='" + product.getRetailer() + "'>"
+			+ "                                <input type='hidden' name='price' value='" + product.getPrice() + "'>"
+			+ "                                <input type='hidden' name='access' value=''>"
+			+ "                                <button id='buy-button' type='submit' class='btn btn-sm text-light'>Write Review</button>"
 			+ "                            </form>"
 			+ "                        </div>"
 			+ "                    </div>"

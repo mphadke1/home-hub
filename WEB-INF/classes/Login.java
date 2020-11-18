@@ -26,20 +26,16 @@ public class Login extends HttpServlet {
 		String usertype = request.getParameter("usertype");
 		HashMap<String, User> hm = new HashMap<String, User>();
 		String TOMCAT_HOME = System.getProperty("catalina.home");
-		//user details are validated using a file 
-		//if the file containts username and passoword user entered user will be directed to home page
-		//else error message will be shown
 		try {
-			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt"));
-			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-			hm = (HashMap)objectInputStream.readObject();
+			hm = MySqlDataStoreUtilities.selectUser();
 		} catch(Exception e) {
 				
 		}
 		User user = hm.get(username);
 		if(user != null) {
 			String user_password = user.getPassword();
-			if (password.equals(user_password)) {
+			String user_type = user.getUsertype();
+			if (password.equals(user_password) && usertype.equals(user_type)) {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("username", user.getName());
 				session.setAttribute("usertype", user.getUsertype());
@@ -104,8 +100,8 @@ public class Login extends HttpServlet {
 		+ "                        <label for='usertype'>User Type</label>"
 		+ "                        <select class='form-control custom-select' id='usertype' name='usertype'>"
 		+ "                            <option value='customer'>Customer</option>"
-		+ "                            <option value='retailer'>Store Manager</option>"
-		+ "                            <option value='manager'>Salesman</option>"
+		+ "                            <option value='storeManager'>Store Manager</option>"
+		+ "                            <option value='salesman'>Salesman</option>"
 		+ "                        </select>"
 		+ "                    </div>"
 		+ "                    <div class='text-right'>"

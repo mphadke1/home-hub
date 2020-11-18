@@ -21,7 +21,8 @@ public class OrderPayment implements Serializable{
 	private String deliveryDate;
 	private String maxOrderCancellationDate;
 	private String pickupType;
-	
+	private String storeId;
+
 	public OrderPayment(
 		int orderId,
 		String userName,
@@ -32,18 +33,21 @@ public class OrderPayment implements Serializable{
 		String orderDate,
 		String deliveryDate,
 		String maxOrderCancellationDate,
-		String pickupType) {
+		String pickupType,
+		String storeId
+		) {
 
 		this.orderId = orderId;
+		this.storeId = storeId;
 		this.userName = userName;
+		this.orderDate = orderDate;
 		this.orderName = orderName;
+		this.pickupType = pickupType;
 	 	this.orderPrice = orderPrice;
 		this.userAddress = userAddress;
 		this.creditCardNo = creditCardNo;
-		this.orderDate = orderDate;
 		this.deliveryDate = deliveryDate;
 		this.maxOrderCancellationDate = maxOrderCancellationDate;
-		this.pickupType = pickupType;
 	}
 
 	public String getOrderDate() {

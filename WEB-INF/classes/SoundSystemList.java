@@ -20,13 +20,23 @@ public class SoundSystemList extends HttpServlet {
 		String name = null;
 		String CategoryName = request.getParameter("maker");
         
+		HashMap<String, SoundSystem> allSoundSystems = new HashMap<String, SoundSystem>();
 		HashMap<String, SoundSystem> hm = new HashMap<String, SoundSystem>();
 
+		try
+		{
+			allSoundSystems = MySqlDataStoreUtilities.getSoundSystems();
+		}
+		catch(Exception e)
+		{
+
+		}
+
 		if(CategoryName == null) {
-			hm.putAll(SaxParserDataStore.soundSystems);
+			hm.putAll(allSoundSystems);
 			name = "";
 		} else {
-            for(Map.Entry<String, SoundSystem> entry : SaxParserDataStore.soundSystems.entrySet()) {
+            for(Map.Entry<String, SoundSystem> entry : allSoundSystems.entrySet()) {
                 if(entry.getValue().getRetailer().equalsIgnoreCase(CategoryName.toLowerCase())) {
                     hm.put(entry.getValue().getId(), entry.getValue());   
                 }
@@ -62,9 +72,17 @@ public class SoundSystemList extends HttpServlet {
 			+ "							   <form class='float-right' method='POST' action='Cart'>"
 			+ "                                <input type='hidden' name='name' value='" + entry.getKey() + "'>"
 			+ "                                <input type='hidden' name='type' value='soundSystems'>"
-			+ "                                <input type='hidden' name='maker' value='" + CategoryName + "'>"
+			+ "                                <input type='hidden' name='maker' value='" + product.getRetailer() + "'>"
 			+ "                                <input type='hidden' name='access' value=''>"
 			+ "                                <button id='buy-button' type='submit' class='btn btn-sm text-light'>Buy Now</button>"
+			+ "                            </form>"
+			+ "							   <form method='POST' action='WriteReview'>"
+			+ "                                <input type='hidden' name='name' value='" + product.getName() + "'>"
+			+ "                                <input type='hidden' name='type' value='soundSystem'>"
+			+ "                                <input type='hidden' name='maker' value='" + product.getRetailer() + "'>"
+			+ "                                <input type='hidden' name='price' value='" + product.getPrice() + "'>"
+			+ "                                <input type='hidden' name='access' value=''>"
+			+ "                                <button id='buy-button' type='submit' class='btn btn-sm text-light'>Write Review</button>"
 			+ "                            </form>"
 			+ "                        </div>"
 			+ "                    </div>"

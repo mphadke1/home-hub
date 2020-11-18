@@ -75,13 +75,21 @@ public class Carousel{
                     + "                                                <div class='card-body px-2'>"
                     + "                                                    <h5 class='card-title'>" + accessory.getName() + "</h5>"
                     + "                                                    <p class='card-text'>$" + accessory.getPrice() + "</p>"
-                    + "                                                    <form method='POST' action='Cart'>"
+                    + "                                                    <form class='float-right' method='POST' action='Cart'>"
                     + "                                                        <button type='submit' id='buy-button' class='btn btn-sm text-light float-right'>Buy Now</button>"
                     + "                                                        <input type='hidden' name='name' value='" + acc.getValue() + "'>"
                     + "                                                        <input type='hidden' name='type' value='accessories'>"
                     + "                                                        <input type='hidden' name='maker' value='" + accessory.getRetailer() + "'>"
                     + "                                                        <input type='hidden' name='access' value='" + oi.getName() + "'>"
                     + "                                                    </form>"
+                    + "							   						   <form method='POST' action='WriteReview'>"
+					+ "                            						       <input type='hidden' name='name' value='" + accessory.getName() + "'>"
+					+ "                            						       <input type='hidden' name='type' value='accessory'>"
+					+ "                            						       <input type='hidden' name='maker' value='" + accessory.getRetailer() + "'>"
+					+ "						                                   <input type='hidden' name='price' value='" + accessory.getPrice() + "'>"
+					+ "                            						       <input type='hidden' name='access' value='" + oi.getName() + "'>"
+					+ "                            						       <button id='buy-button' type='submit' class='btn btn-sm text-light'>Write Review</button>"
+					+ "                            						   </form>"
                     + "                                                </div>"
                     + "                                            </div>"
                     + "                                        </div>";
@@ -166,7 +174,7 @@ public class Carousel{
 				// 			"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 				// 			"<input type='hidden' name='access' value='"+oi.getName()+"'>"+
 				// 			"<input type='submit' class='btnbuy' value='Buy Now'></form></li>");
-				// 	sb.append("<li><form method='post' action='WriteReview'>"+"<input type='hidden' name='name' value='"+acc+"'>"+
+				// 	sb.append("<li><form method='POST' action='WriteReview'>"+"<input type='hidden' name='name' value='"+acc+"'>"+
 				// 			"<input type='hidden' name='type' value='accessories'>"+
 				// 			"<input type='hidden' name='maker' value='"+CategoryName+"'>"+
 				// 			"<input type='hidden' name='access' value='"+oi.getName()+"'>"+

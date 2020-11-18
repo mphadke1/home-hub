@@ -376,106 +376,6 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 			return;
 		}
 
-        // if (element.equals("console")) {
-		// 	consoles.put(console.getId(),console);
-		// 	return;
-        // }
- 
-        // if (element.equals("tablet")) {	
-		// 	tablets.put(tablet.getId(),tablet);
-		// 	return;
-        // }
-        // if (element.equals("game")) {	  
-		// 	games.put(game.getId(),game);
-		// 	return;
-        // }
-        // if (element.equals("accessory") && currentElement.equals("accessory")) {
-		// 	accessories.put(accessory.getId(),accessory);       
-		// 	return; 
-        // }
-		// if (element.equals("accessory") && currentElement.equals("console")) 
-		// {
-		// 	accessoryHashMap.put(elementValueRead,elementValueRead);
-		// }
-      	// if (element.equalsIgnoreCase("accessories") && currentElement.equals("console")) {
-		// 	console.setAccessories(accessoryHashMap);
-		// 	accessoryHashMap=new HashMap<String,String>();
-		// 	return;
-		// }
-        // if (element.equalsIgnoreCase("image")) {
-		//     if(currentElement.equals("console"))
-		// 		console.setImage(elementValueRead);
-        // 	if(currentElement.equals("game"))
-		// 		game.setImage(elementValueRead);
-        //     if(currentElement.equals("tablet"))
-		// 		tablet.setImage(elementValueRead);
-        //     if(currentElement.equals("accessory"))
-		// 		accessory.setImage(elementValueRead);          
-		// 	return;
-        // }
-        
-
-		// if (element.equalsIgnoreCase("discount")) {
-        //     if(currentElement.equals("console"))
-		// 		console.setDiscount(Double.parseDouble(elementValueRead));
-        // 	if(currentElement.equals("game"))
-		// 		game.setDiscount(Double.parseDouble(elementValueRead));
-        //     if(currentElement.equals("tablet"))
-		// 		tablet.setDiscount(Double.parseDouble(elementValueRead));
-        //     if(currentElement.equals("accessory"))
-		// 		accessory.setDiscount(Double.parseDouble(elementValueRead));          
-		// 	return;
-	    // }
-
-
-		// if (element.equalsIgnoreCase("condition")) {
-        //     if(currentElement.equals("console"))
-		// 		console.setCondition(elementValueRead);
-        // 	if(currentElement.equals("game"))
-		// 		game.setCondition(elementValueRead);
-        //     if(currentElement.equals("tablet"))
-		// 		tablet.setCondition(elementValueRead);
-        //     if(currentElement.equals("accessory"))
-		// 		accessory.setCondition(elementValueRead);          
-		// 	return;  
-		// }
-
-		// if (element.equalsIgnoreCase("manufacturer")) {
-        //     if(currentElement.equals("console"))
-		// 		console.setRetailer(elementValueRead);
-        // 	if(currentElement.equals("game"))
-		// 		game.setRetailer(elementValueRead);
-        //     if(currentElement.equals("tablet"))
-		// 		tablet.setRetailer(elementValueRead);
-        //     if(currentElement.equals("accessory"))
-		// 		accessory.setRetailer(elementValueRead);          
-		// 	return;
-		// }
-
-        // if (element.equalsIgnoreCase("name")) {
-        //     if(currentElement.equals("console"))
-		// 		console.setName(elementValueRead);
-        // 	if(currentElement.equals("game"))
-		// 		game.setName(elementValueRead);
-        //     if(currentElement.equals("tablet"))
-		// 		tablet.setName(elementValueRead);
-        //     if(currentElement.equals("accessory"))
-		// 		accessory.setName(elementValueRead);          
-		// 	return;
-	    // }
-	
-        // if(element.equalsIgnoreCase("price")){
-		// 	if(currentElement.equals("console"))
-		// 		console.setPrice(Double.parseDouble(elementValueRead));
-        // 	if(currentElement.equals("game"))
-		// 		game.setPrice(Double.parseDouble(elementValueRead));
-        //     if(currentElement.equals("tablet"))
-		// 		tablet.setPrice(Double.parseDouble(elementValueRead));
-        //     if(currentElement.equals("accessory"))
-		// 		accessory.setPrice(Double.parseDouble(elementValueRead));          
-		// 	return;
-        // }
-
 		if(element.equalsIgnoreCase("TVCatalog")) {
 			currentElement = "";
 		}
@@ -494,6 +394,6 @@ https://docs.oracle.com/javase/7/docs/api/org/xml/sax/helpers/DefaultHandler.htm
 //call the constructor to parse the xml and get product details
  public static void addHashmap() {
 		String TOMCAT_HOME = System.getProperty("catalina.home");	
-		new SaxParserDataStore(TOMCAT_HOME+"\\webapps\\assignment1\\ProductCatalog.xml");
+		new SaxParserDataStore(TOMCAT_HOME+"\\webapps\\assignment3\\ProductCatalog.xml");
     } 
 }
