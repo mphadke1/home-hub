@@ -4,7 +4,7 @@
 }
 
 #card-img {
-    height: 20vh;
+    height: 30vh;
     object-fit: contain;
 }
 
@@ -29,6 +29,11 @@
 #header {
     background-color: var(--primary-color);
     /* width: 100vw; */
+}
+
+a.list-group-item:hover{
+    background: var(--accent-color);
+    color: white;
 }
 
 #head-link {
