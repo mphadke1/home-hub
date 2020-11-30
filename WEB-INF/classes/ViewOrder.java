@@ -74,7 +74,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		String TOMCAT_HOME = System.getProperty("catalina.home");
 
 		try {
-			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
+			FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\home-hub\\PaymentDetails.txt"));
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
 			orderPayments = (HashMap)objectInputStream.readObject();
 		}
