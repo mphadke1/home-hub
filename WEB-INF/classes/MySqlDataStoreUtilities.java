@@ -369,7 +369,7 @@ public class MySqlDataStoreUtilities
                     rs.getString("productCondition"),
                     rs.getDouble("productDiscount")
                 );
-                hm.put(rs.getString("Id"), wp);
+                hm.put(rs.getString("productName"), wp);
                 wp.setId(rs.getString("Id"));
             }
         }
@@ -402,7 +402,7 @@ public class MySqlDataStoreUtilities
                     rs.getString("productCondition"),
                     rs.getDouble("productDiscount")
                 );
-                hm.put(rs.getString("Id"), tv);
+                hm.put(rs.getString("productName"), tv);
                 tv.setId(rs.getString("Id"));
             }
         }
@@ -435,7 +435,7 @@ public class MySqlDataStoreUtilities
                     rs.getString("productCondition"),
                     rs.getDouble("productDiscount")
                 );
-                hm.put(rs.getString("Id"), lp);
+                hm.put(rs.getString("productName"), lp);
                 lp.setId(rs.getString("Id"));
             }
         }
@@ -468,7 +468,7 @@ public class MySqlDataStoreUtilities
                     rs.getString("productCondition"),
                     rs.getDouble("productDiscount")
                 );
-                hm.put(rs.getString("Id"), ph);
+                hm.put(rs.getString("productName"), ph);
                 ph.setId(rs.getString("Id"));
             }
         }
@@ -501,7 +501,7 @@ public class MySqlDataStoreUtilities
                     rs.getString("productCondition"),
                     rs.getDouble("productDiscount")
                 );
-                hm.put(rs.getString("Id"), ss);
+                hm.put(rs.getString("productName"), ss);
                 ss.setId(rs.getString("Id"));
             }
         }
@@ -534,7 +534,7 @@ public class MySqlDataStoreUtilities
                     rs.getString("productCondition"),
                     rs.getDouble("productDiscount")
                 );
-                hm.put(rs.getString("Id"), va);
+                hm.put(rs.getString("productName"), va);
                 va.setId(rs.getString("Id"));
             }
         }
@@ -832,10 +832,45 @@ public class MySqlDataStoreUtilities
             ResultSet rs = pst.executeQuery();
         
             rs.next();
-            p = new Product(rs.getString("Id"),rs.getString("productName"),rs.getDouble("productPrice"),rs.getString("productImage"),rs.getString("productManufacturer"),rs.getString("productCondition"),rs.getString("ProductType"),rs.getDouble("productDiscount"));
+            p = new Product(
+                rs.getString("Id"),
+                rs.getString("productName"),
+                rs.getDouble("productPrice"),
+                rs.getString("productImage"),
+                rs.getString("productManufacturer"),
+                rs.getString("productCondition"),
+                rs.getString("ProductType"),
+                rs.getDouble("productDiscount")
+            );
         } catch(Exception e) {
-            System.out.println("getProductsByName(): " + e.getMessage());
+            System.out.println("getProductsById(): " + e.getMessage());
         }
         return p;
     }
+
+    public static HashMap<String, Product> getProductsAsHashMap() {
+		HashMap<String,Product> hm = new HashMap<String,Product>();
+		try {
+			getConnection();
+			Statement stmt=conn.createStatement();
+			String selectCustomerQuery="select * from  productdetails";
+			ResultSet rs = stmt.executeQuery(selectCustomerQuery);
+			while(rs.next()) {	
+                Product p = new Product(
+                    rs.getString("Id"),
+                    rs.getString("productName"),
+                    rs.getDouble("productPrice"),
+                    rs.getString("productImage"),
+                    rs.getString("productManufacturer"),
+                    rs.getString("productCondition"),
+                    rs.getString("ProductType"),
+                    rs.getDouble("productDiscount")
+                );
+				hm.put(rs.getString("productName"), p);
+			}
+		} catch(Exception e) {
+            e.printStackTrace();	
+		}
+		return hm;			
+	}
 }

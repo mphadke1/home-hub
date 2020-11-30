@@ -1,3 +1,4 @@
+import javax.servlet.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -23,7 +24,8 @@ public class Home extends HttpServlet {
 		utility.printHtml("Header.html");
 		utility.printNavbar();
 		utility.printHtml("LeftNavigationBar.html");
-		utility.printHtml("Content.html");
+		RequestDispatcher rd = request.getRequestDispatcher("DealMatchesUtilities");
+		rd.include(request,response);
 		utility.printHtml("Footer.html");
 	}
 

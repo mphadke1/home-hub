@@ -258,51 +258,56 @@ public class Utilities extends HttpServlet{
 			OrdersHashMap.orders.put(username(), arr);
 		}
 		ArrayList<OrderItem> orderItems = OrdersHashMap.orders.get(username());
-		OrderItem orderitem;
-		switch(type.toLowerCase()) {
-			case "accessories":
-				Accessory accessory = SaxParserDataStore.accessories.get(name);
-				orderitem = new OrderItem(accessory.getName(), accessory.getPrice(), accessory.getImage(), accessory.getRetailer());
-				orderItems.add(orderitem);
-				break;
-			case "tvs":
-				TV tv;
-				tv = MySqlDataStoreUtilities.getTVs().get(name);
-				orderitem = new OrderItem(tv.getName(), tv.getPrice(), tv.getImage(), tv.getRetailer());
-				orderItems.add(orderitem);
-				break;
-			case "soundsystems":
-				SoundSystem soundSystem;
-				soundSystem = MySqlDataStoreUtilities.getSoundSystems().get(name);
-				orderitem = new OrderItem(soundSystem.getName(), soundSystem.getPrice(), soundSystem.getImage(), soundSystem.getRetailer());
-				orderItems.add(orderitem);
-				break;
-			case "phones":
-				Phone phone;
-				phone = MySqlDataStoreUtilities.getPhones().get(name);
-				orderitem = new OrderItem(phone.getName(), phone.getPrice(), phone.getImage(), phone.getRetailer());
-				orderItems.add(orderitem);
-				break;
-			case "laptops":
-				Laptop laptop;
-				laptop = MySqlDataStoreUtilities.getLaptops().get(name);
-				orderitem = new OrderItem(laptop.getName(), laptop.getPrice(), laptop.getImage(), laptop.getRetailer());
-				orderItems.add(orderitem);
-				break;
-			case "voiceAssistants":
-				VoiceAssistant voiceAssistant;
-				voiceAssistant = MySqlDataStoreUtilities.getVoiceAssistants().get(name);
-				orderitem = new OrderItem(voiceAssistant.getName(), voiceAssistant.getPrice(), voiceAssistant.getImage(), voiceAssistant.getRetailer());
-				orderItems.add(orderitem);
-				break;
-			case "wearables":
-				Wearable wearable;
-				wearable = MySqlDataStoreUtilities.getWearables().get(name);
-				orderitem = new OrderItem(wearable.getName(), wearable.getPrice(), wearable.getImage(), wearable.getRetailer());
-				orderItems.add(orderitem);
-				break;
+		OrderItem orderitem; 
+		if(type.toLowerCase().equals("accessories") || type.toLowerCase().equals("accessory")) {
+			Accessory accessory = SaxParserDataStore.accessories.get(name);
+			orderitem = new OrderItem(accessory.getName(), accessory.getPrice(), accessory.getImage(), accessory.getRetailer());
+			orderItems.add(orderitem);
+			return;
 		}
-
+		if(type.toLowerCase().equals("tvs") || type.toLowerCase().equals("tv")) {
+			TV tv;
+			tv = MySqlDataStoreUtilities.getTVs().get(name);
+			orderitem = new OrderItem(tv.getName(), tv.getPrice(), tv.getImage(), tv.getRetailer());
+			orderItems.add(orderitem);
+			return;
+		}
+		if(type.toLowerCase().equals("soundsystems") || type.toLowerCase().equals("soundsystem")) {
+			SoundSystem soundSystem;
+			soundSystem = MySqlDataStoreUtilities.getSoundSystems().get(name);
+			orderitem = new OrderItem(soundSystem.getName(), soundSystem.getPrice(), soundSystem.getImage(), soundSystem.getRetailer());
+			orderItems.add(orderitem);
+			return;
+		}
+		if(type.toLowerCase().equals("phones") || type.toLowerCase().equals("phone")) {
+			Phone phone;
+			phone = MySqlDataStoreUtilities.getPhones().get(name);
+			orderitem = new OrderItem(phone.getName(), phone.getPrice(), phone.getImage(), phone.getRetailer());
+			orderItems.add(orderitem);
+			return;
+		}
+		if(type.toLowerCase().equals("laptops") || type.toLowerCase().equals("laptop")) {
+			Laptop laptop;
+			System.out.println(MySqlDataStoreUtilities.getLaptops());
+			laptop = MySqlDataStoreUtilities.getLaptops().get(name);
+			orderitem = new OrderItem(laptop.getName(), laptop.getPrice(), laptop.getImage(), laptop.getRetailer());
+			orderItems.add(orderitem);
+			return;
+		}
+		if(type.toLowerCase().equals("voiceAssistants") || type.toLowerCase().equals("voiceAssistant")) {
+			VoiceAssistant voiceAssistant;
+			voiceAssistant = MySqlDataStoreUtilities.getVoiceAssistants().get(name);
+			orderitem = new OrderItem(voiceAssistant.getName(), voiceAssistant.getPrice(), voiceAssistant.getImage(), voiceAssistant.getRetailer());
+			orderItems.add(orderitem);
+			return;
+		}
+		if(type.toLowerCase().equals("wearables") || type.toLowerCase().equals("wearable")) {
+			Wearable wearable;
+			wearable = MySqlDataStoreUtilities.getWearables().get(name);
+			orderitem = new OrderItem(wearable.getName(), wearable.getPrice(), wearable.getImage(), wearable.getRetailer());
+			orderItems.add(orderitem);
+			return;
+		}
 	}
 
 	// store the payment details for orders
