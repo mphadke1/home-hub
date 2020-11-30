@@ -551,7 +551,7 @@ public class MySqlDataStoreUtilities
         try
         {
             getConnection();
-            String addProductQurey = "INSERT INTO Productdetails(ProductType,productName,productPrice,productImage,productManufacturer,productCondition,productDiscount,manufacturerRebate,numberOfAvailableProducts,numberOfProductsSold)" +
+            String addProductQurey = "INSERT INTO Productdetails(ProductType,productName,productPrice,productImage,productManufacturer,productCondition,productDiscount,manufacturerRebate,numberOfAvailableProducts,numberOfItemsSold)" +
             "VALUES (?,?,?,?,?,?,?,?,?,?);";
 
             PreparedStatement pst = conn.prepareStatement(addProductQurey);
