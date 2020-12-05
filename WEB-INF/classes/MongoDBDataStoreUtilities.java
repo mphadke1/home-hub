@@ -224,4 +224,49 @@ public class MongoDBDataStoreUtilities
             return reviewList;
         }
     }
+
+    public static long getNumberOfReviewsByZipcode(int zipcode) {
+        long numberOfReviews = 0;
+        try {
+            getConnection();
+            numberOfReviews = myReviews.count(new BasicDBObject("retailerpin", String.valueOf(zipcode)));
+            // db.myReviews.count({retailerpin: "60069"})
+        } catch(Exception e) {
+            System.out.println("Error in MongoDB: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return numberOfReviews;
+    }
+
+    public static long getNumberOfLikedReviewsByZipcode(int zipcode) {
+        long numberOfReviews = 0;
+        try {
+            getConnection();
+            numberOfReviews = myReviews.count(
+                new BasicDBObject("retailerpin", String.valueOf(zipcode))
+                    .append("reviewRating", new BasicDBObject("$gte", 3))
+            );
+            // db.myReviews.count({retailerpin: "60069", reviewRating: {$gte: 3}})
+        } catch(Exception e) {
+            System.out.println("Error in MongoDB: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return numberOfReviews;
+    }
+
+    public static long getNumberOfDislikedReviewsByZipcode(int zipcode) {
+        long numberOfReviews = 0;
+        try {
+            getConnection();
+            numberOfReviews = myReviews.count(
+                new BasicDBObject("retailerpin", String.valueOf(zipcode))
+                    .append("reviewRating", new BasicDBObject("$lt", 3))
+            );
+            // db.myReviews.count({retailerpin: "60026", reviewRating: {$lt: 3}})
+        } catch(Exception e) {
+            System.out.println("Error in MongoDB: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return numberOfReviews;
+    }
 }
