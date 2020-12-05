@@ -40,7 +40,7 @@ public class DealMatchesUtilities extends HttpServlet {
 				if(!selectedproducts.containsKey(entry.getKey().toLowerCase())) {
 					BufferedReader reader = new BufferedReader(
 						new FileReader (
-							new File(TOMCAT_HOME+"\\webapps\\assignment5\\DealMatches.txt")
+							new File(TOMCAT_HOME+"\\webapps\\home-hub\\DealMatches.txt")
 						)
 					);
 					line = reader.readLine();

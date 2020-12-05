@@ -65,7 +65,13 @@ public class Utilities extends HttpServlet{
 			switch(getUserType().toLowerCase()) {
 				case "storemanager":
 					navbar +=
-					  "		   <div class='nav-item dropdown'>"
+					  "        <div class='nav-item'>"
+					+ "            <a class='nav-link' href='DataAnalytics'>Data Analytics</a>"
+					+ "        </div>"
+					+ "        <div class='nav-item'>"
+					+ "            <a class='nav-link' href='HeatMap'>HeatMap</a>"
+					+ "        </div>"
+					+ "		   <div class='nav-item dropdown'>"
 					+ "		   	   <a class='nav-link dropdown-toggle' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
 					+ "		   	       Reports"
 					+ "		   	   </a>"
@@ -258,7 +264,7 @@ public class Utilities extends HttpServlet{
 			OrdersHashMap.orders.put(username(), arr);
 		}
 		ArrayList<OrderItem> orderItems = OrdersHashMap.orders.get(username());
-		OrderItem orderitem; 
+		OrderItem orderitem;
 		if(type.toLowerCase().equals("accessories") || type.toLowerCase().equals("accessory")) {
 			Accessory accessory = SaxParserDataStore.accessories.get(name);
 			orderitem = new OrderItem(accessory.getName(), accessory.getPrice(), accessory.getImage(), accessory.getRetailer());
@@ -532,5 +538,42 @@ public class Utilities extends HttpServlet{
 		return ar;
 	}
 
+	public static ArrayList<HeatMapData> getHeatMapDataForTotalReviews() {
+		ArrayList<HeatMapData> dataList = new ArrayList<HeatMapData>();
+		ArrayList<Store> storeList = new ArrayList<Store>();
+		storeList = MySqlDataStoreUtilities.getStoresList();
+		for (Store store : storeList) {
+			long count = MongoDBDataStoreUtilities.getNumberOfReviewsByZipcode(store.getZipcode());
+			HeatMapData data = new HeatMapData(store, (int) count);
+			dataList.add(data);
+		}
+
+		return dataList;
+	}
+
+	public static ArrayList<HeatMapData> getHeatMapDataForLikedProducts() {
+		ArrayList<HeatMapData> dataList = new ArrayList<HeatMapData>();
+		ArrayList<Store> storeList = new ArrayList<Store>();
+		storeList = MySqlDataStoreUtilities.getStoresList();
+		for (Store store : storeList) {
+			long count = MongoDBDataStoreUtilities.getNumberOfLikedReviewsByZipcode(store.getZipcode());
+			HeatMapData data = new HeatMapData(store, (int) count);
+			dataList.add(data);
+		}
+
+		return dataList;
+	}
+	public static ArrayList<HeatMapData> getHeatMapDataForDislikedProducts() {
+		ArrayList<HeatMapData> dataList = new ArrayList<HeatMapData>();
+		ArrayList<Store> storeList = new ArrayList<Store>();
+		storeList = MySqlDataStoreUtilities.getStoresList();
+		for (Store store : storeList) {
+			long count = MongoDBDataStoreUtilities.getNumberOfDislikedReviewsByZipcode(store.getZipcode());
+			HeatMapData data = new HeatMapData(store, (int) count);
+			dataList.add(data);
+		}
+
+		return dataList;
+	}
 
 }

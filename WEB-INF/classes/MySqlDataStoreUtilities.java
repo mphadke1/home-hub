@@ -15,7 +15,7 @@ public class MySqlDataStoreUtilities
         }
         catch(Exception e)
         {
-
+            e.printStackTrace();
         }
     }
 
@@ -551,7 +551,7 @@ public class MySqlDataStoreUtilities
         try
         {
             getConnection();
-            String addProductQurey = "INSERT INTO Productdetails(ProductType,productName,productPrice,productImage,productManufacturer,productCondition,productDiscount,manufacturerRebate,numberOfAvailableProducts,numberOfProductsSold)" +
+            String addProductQurey = "INSERT INTO Productdetails(ProductType,productName,productPrice,productImage,productManufacturer,productCondition,productDiscount,manufacturerRebate,numberOfAvailableProducts,numberOfItemsSold)" +
             "VALUES (?,?,?,?,?,?,?,?,?,?);";
 
             PreparedStatement pst = conn.prepareStatement(addProductQurey);
@@ -647,6 +647,33 @@ public class MySqlDataStoreUtilities
         return hm;
     }
 
+    public static ArrayList<Store> getStoresList() {
+        ArrayList<Store> stores = new ArrayList<Store>();
+        try {
+            getConnection();
+            String getStoresQuery = "SELECT * from stores;";
+            PreparedStatement pst = conn.prepareStatement(getStoresQuery);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()) {
+                Store store = new Store(
+                    rs.getInt("store_id"),
+                    rs.getString("name"),
+                    rs.getString("street"),
+                    rs.getString("city"),
+                    rs.getString("state"),
+                    rs.getInt("zipcode")
+                );
+                stores.add(store);
+            }
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return stores;
+    }
+
     public static Store getStoreById(int store_id) {
         Store store = null;
         try {
@@ -678,13 +705,13 @@ public class MySqlDataStoreUtilities
 
         try {
             getConnection();
-            
+
             String availableProductsListQuery="SELECT productName, productPrice, productDiscount, numberOfAvailableProducts, manufacturerRebate FROM productdetails;";
             PreparedStatement pst = conn.prepareStatement(availableProductsListQuery);
             ResultSet rs = pst.executeQuery();
-        
+
             while(rs.next())
-            {	
+            {
                 NoOfAvailableProducts product = new NoOfAvailableProducts(rs.getString("productName"),rs.getString("productPrice"),rs.getString("productPrice"),rs.getString("numberOfAvailableProducts"),rs.getString("manufacturerRebate"));
                 availableProductsList.add(product);
             }
@@ -699,15 +726,15 @@ public class MySqlDataStoreUtilities
     public static ArrayList<NoOfAvailableProducts> currentOnSaleProductsList()
     {
         ArrayList<NoOfAvailableProducts> currentOnSaleProductsList = new ArrayList<NoOfAvailableProducts>();
-        
+
         try {
             getConnection();
-            
+
             String currentOnSaleProductsListQuery="SELECT productName, productPrice, productDiscount, numberOfAvailableProducts, manufacturerRebate FROM productdetails WHERE productDiscount > 0;";
             PreparedStatement pst = conn.prepareStatement(currentOnSaleProductsListQuery);
             ResultSet rs = pst.executeQuery();
-        
-            while(rs.next()) {	
+
+            while(rs.next()) {
                 NoOfAvailableProducts product = new NoOfAvailableProducts(rs.getString("productName"),rs.getString("productPrice"),rs.getString("productDiscount") ,rs.getString("numberOfAvailableProducts"),rs.getString("manufacturerRebate"));
                 currentOnSaleProductsList.add(product);
             }
@@ -745,16 +772,16 @@ public class MySqlDataStoreUtilities
     {
         ArrayList<NoOfProductsSold> totalSoldProductsList = new ArrayList<NoOfProductsSold>();
 
-        try 
+        try
         {
             getConnection();
-            
+
             String totalSoldProductsListQuery="SELECT productName, productPrice, numberOfItemsSold, (productPrice * numberOfItemsSold) AS productTotalSales FROM productdetails;";
             PreparedStatement pst = conn.prepareStatement(totalSoldProductsListQuery);
             ResultSet rs = pst.executeQuery();
-        
+
             while(rs.next())
-            {	
+            {
                 NoOfProductsSold product = new NoOfProductsSold(rs.getString("productName"),rs.getString("productPrice"),rs.getString("numberOfItemsSold") ,rs.getString("productTotalSales"));
                 totalSoldProductsList.add(product);
             }
@@ -771,16 +798,16 @@ public class MySqlDataStoreUtilities
     {
         ArrayList<TotalSalesDaily> totalSalesDailyOrdersList = new ArrayList<TotalSalesDaily>();
 
-        try 
+        try
         {
             getConnection();
-            
+
             String totalSalesDailyOrdersListQuery="SELECT orderDate, SUM(orderPrice) AS totalDailySales, GROUP_CONCAT(CONCAT(orderName, ' (', orderPrice, ')')) AS productsListDesciption FROM customerorders GROUP BY orderDate;";
             PreparedStatement pst = conn.prepareStatement(totalSalesDailyOrdersListQuery);
             ResultSet rs = pst.executeQuery();
-        
+
             while(rs.next())
-            {	
+            {
                 TotalSalesDaily order = new TotalSalesDaily(rs.getString("orderDate"),rs.getString("totalDailySales"), rs.getString("productsListDesciption"));
                 totalSalesDailyOrdersList.add(order);
             }
@@ -796,18 +823,18 @@ public class MySqlDataStoreUtilities
     public static ArrayList<Product> getProductsByNameOrType(String filterString) {
         ArrayList<Product> productList = new ArrayList<Product>();
 
-        try 
+        try
         {
             getConnection();
-            
+
             String productQuery = "SELECT * FROM productDetails where productName LIKE ? OR ProductType LIKE ? OR productManufacturer LIKE ? ORDER BY productName;";
             PreparedStatement pst = conn.prepareStatement(productQuery);
             pst.setString(1, "%" + filterString + "%");
             pst.setString(2, "%" + filterString + "%");
             pst.setString(3, "%" + filterString + "%");
             ResultSet rs = pst.executeQuery();
-        
-            while(rs.next()) {	
+
+            while(rs.next()) {
                 Product p = new Product(rs.getString("Id"),rs.getString("productName"),rs.getDouble("productPrice"),rs.getString("productImage"),rs.getString("productManufacturer"),rs.getString("productCondition"),rs.getString("ProductType"),rs.getDouble("productDiscount"));
                 productList.add(p);
 			}
@@ -822,15 +849,15 @@ public class MySqlDataStoreUtilities
 
     public static Product getProductById(String id) {
         Product p = null;
-        try 
+        try
         {
             getConnection();
-            
+
             String productQuery = "SELECT * FROM productDetails where Id = ?;";
             PreparedStatement pst = conn.prepareStatement(productQuery);
             pst.setString(1, id);
             ResultSet rs = pst.executeQuery();
-        
+
             rs.next();
             p = new Product(
                 rs.getString("Id"),
@@ -855,7 +882,7 @@ public class MySqlDataStoreUtilities
 			Statement stmt=conn.createStatement();
 			String selectCustomerQuery="select * from  productdetails";
 			ResultSet rs = stmt.executeQuery(selectCustomerQuery);
-			while(rs.next()) {	
+			while(rs.next()) {
                 Product p = new Product(
                     rs.getString("Id"),
                     rs.getString("productName"),
@@ -869,8 +896,62 @@ public class MySqlDataStoreUtilities
 				hm.put(rs.getString("productName"), p);
 			}
 		} catch(Exception e) {
-            e.printStackTrace();	
+            e.printStackTrace();
 		}
-		return hm;			
+		return hm;
 	}
+
+    public static ArrayList<HeatMapData> getHeatMapDataForTransactions() {
+        ArrayList<HeatMapData> dataList = new ArrayList<HeatMapData>();
+        try {
+            getConnection();
+            String dataQuery = "SELECT *, (select count(*) from customerOrders where customerOrders.store_id = stores.store_id) as numberOfTransactions from stores;";
+            PreparedStatement pst = conn.prepareStatement(dataQuery);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()) {
+                HeatMapData data = new HeatMapData(
+                    rs.getString("name"),
+                    rs.getString("street"),
+                    rs.getString("city"),
+                    rs.getString("state"),
+                    rs.getInt("zipcode"),
+                    rs.getInt("numberOfTransactions")
+                );
+                dataList.add(data);
+            }
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return dataList;
+    }
+
+    public static ArrayList<HeatMapData> getHeatMapDataForPickups() {
+        ArrayList<HeatMapData> dataList = new ArrayList<HeatMapData>();
+        try {
+            getConnection();
+            String dataQuery = "SELECT *, (select count(*) from customerOrders where pickupType = 'Store Pickup') as numberOfStorePickups from stores;";
+            PreparedStatement pst = conn.prepareStatement(dataQuery);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()) {
+                HeatMapData data = new HeatMapData(
+                    rs.getString("name"),
+                    rs.getString("street"),
+                    rs.getString("city"),
+                    rs.getString("state"),
+                    rs.getInt("zipcode"),
+                    rs.getInt("numberOfStorePickups")
+                );
+                dataList.add(data);
+            }
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return dataList;
+    }
 }

@@ -46,10 +46,6 @@ public class Registration extends HttpServlet {
 			//get the user details from file 
 
 			try {
-				// FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt"));
-				// ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-				// hm= (HashMap)objectInputStream.readObject();
-
 				hm = MySqlDataStoreUtilities.selectUser();
 			} catch(Exception e) {
 				
@@ -66,12 +62,7 @@ public class Registration extends HttpServlet {
 				User user = new User(username,password,usertype);
 				hm.put(username, user);
 				MySqlDataStoreUtilities.insertUser(username,password,repassword,usertype);
-			    // FileOutputStream fileOutputStream = new FileOutputStream(TOMCAT_HOME+"\\webapps\\assignment1\\UserDetails.txt");
-        		// ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-           	 	// objectOutputStream.writeObject(hm);
-				// objectOutputStream.flush();
-				// objectOutputStream.close();       
-				// fileOutputStream.close();
+				
 				HttpSession session = request.getSession(true);				
 				session.setAttribute("login_msg", "Your "+usertype+" account has been created. Please login");
 				if(!utility.isLoggedin()){
