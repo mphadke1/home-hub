@@ -14,7 +14,7 @@ public class ProductRecommenderUtility{
 		HashMap<String,String> prodRecmMap = new HashMap<String,String>();
 		try {
 
-            br = new BufferedReader(new FileReader(new File(TOMCAT_HOME+"\\webapps\\assignment5\\output.csv")));
+            br = new BufferedReader(new FileReader(new File(TOMCAT_HOME+"\\webapps\\home-hub\\output.csv")));
             while ((line = br.readLine()) != null) {
 
                 // use comma as separator
