@@ -93,10 +93,6 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				pw.print("<input type='hidden' name='orderId' value='"+orderId+"'>");
 				//get the order details from file
 				try {
-					// FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
-					// ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-					// orderPayments = (HashMap)objectInputStream.readObject();
-				
 					orderPayments=MySqlDataStoreUtilities.selectOrder();
 				}
 				catch(Exception e) {
@@ -196,10 +192,6 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				ArrayList<OrderPayment> listOrderPayment =new ArrayList<OrderPayment>();
 				//get the order from file
 				try {
-					// FileInputStream fileInputStream = new FileInputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
-					// ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);	      
-					// orderPayments = (HashMap)objectInputStream.readObject();
-				
 					orderPayments=MySqlDataStoreUtilities.selectOrder();
 				} catch(Exception e) {
 			
@@ -237,18 +229,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				orderPayments.get(orderId).removeAll(listOrderPayment);
 				if(orderPayments.get(orderId).size() == 0) {
                     orderPayments.remove(orderId);
-                }
-				//save the updated hashmap with removed order to the file	
-				// try {	
-				// 	FileOutputStream fileOutputStream = new FileOutputStream(new File(TOMCAT_HOME+"\\webapps\\assignment1\\PaymentDetails.txt"));
-				// 	ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-				// 	objectOutputStream.writeObject(orderPayments);
-				// 	objectOutputStream.flush();
-				// 	objectOutputStream.close();       
-				// 	fileOutputStream.close();
-				// } catch(Exception e) {
-				
-				// }	
+                }	
 			} else {
                 body +=
                   "                <div class='alert alert-danger'>"

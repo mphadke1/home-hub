@@ -15,7 +15,7 @@ public class MySqlDataStoreUtilities
         }
         catch(Exception e)
         {
-
+            e.printStackTrace();
         }
     }
 
