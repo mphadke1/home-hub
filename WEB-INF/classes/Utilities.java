@@ -63,7 +63,7 @@ public class Utilities extends HttpServlet{
 
 		if(isLoggedin()) {
 			switch(getUserType().toLowerCase()) {
-				case "storemanager":
+				case "administrator":
 					navbar +=
 					  "        <div class='nav-item'>"
 					+ "            <a class='nav-link' href='DataAnalytics'>Data Analytics</a>"
@@ -87,10 +87,10 @@ public class Utilities extends HttpServlet{
 					+ "            <a class='nav-link' href='CustomerOrders'>Customer Orders</a>"
 					+ "        </div>";
 					break;
-				case "salesman":
+				case "worker":
 					navbar +=
 					  "        <div class='nav-item'>"
-					+ "            <a class='nav-link' href='ProductCatalog'>Product Catalog</a>"
+					+ "            <a class='nav-link' href='ApplyForLeave'>Apply For Leave</a>"
 					+ "        </div>";
 					break;
 			}
