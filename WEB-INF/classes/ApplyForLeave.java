@@ -10,9 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/ViewOrder")
+@WebServlet("/ApplyForLeave")
 
-public class ViewOrder extends HttpServlet {
+public class ApplyForLeave extends HttpServlet {
 	
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -34,105 +34,20 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
         String body =
           "        <div class='col-12 col-sm-9'>"
-        + "            <h2 class='m-3'>Work Orders</h2>"
+        + "            <h2 class='m-3'>Apply For Leave</h2>"
         + "            <hr>";
 
-		// pw.print("<form name ='ViewOrder' action='ViewOrder' method='get'>");
-		// pw.print("<div id='content'><div class='post'><h2 class='title meta'>");
-		// pw.print("<a style='font-size: 24px;'>Order</a>");
-		// pw.print("</h2><div class='entry'>");
-
-		/*check if the order button is clicked 
-		if order button is not clicked that means the view order page is visited freshly
-		then user will get textbox to give order number by which he can view order 
-		if order button is clicked user will be directed to this same servlet and user has given order number 
-		then this page shows all the order details*/
+		
 	
 		if(request.getParameter("Order") == null) {
 
             body +=
               "            <div class='m-3'>"
             + "                <form action='ViewOrder' method='GET'>"
-			+ "                    <table class='table'>"
-			+ "                        <thead>"
-			+ "                            <tr>"
-			+ "                                <th>Order ID</th>"
-			+ "                                <th>Username</th>"
-			+ "                                <th>Type of Service</th>"
-			+ "                                <th>Address</th>"
-			+ "                                <th>Status</th>"
-			+ "                                <th>Date</th>"
-			+ "                                <th>Time</th>"
-			+ "                                <th>Action</th>"
-			+ "                            </tr>"
-			+ "                        </thead>"
-			+ "                            <tr>"
-			+ "                                <th>1</th>"
-			+ "                                <th>John Smith</th>"
-			+ "                                <th>Plumbing Service</th>"
-			+ "                                <th>400E Apt 401</th>"
-			+ "                                <th><select status='selectType' class='input'><option value='Pending' selected>Pending</option><option value='Completed' >Completed</option><option value='In-Progress' >In-Progress</option></th>"
-
-			+ "                                <th>11/25/20</th>"
-			+ "                                <th>11:00 am</th>"
-			+ "                    			   <th><button id='buy-button' class='btn text-light' type='submit'>Submit</button></th>"
-			+ "                            </tr>"
-			+ "                            <tr>"
-			+ "                                <th>2</th>"
-			+ "                                <th>Jane Doe</th>"
-			+ "                                <th>Electrical Service</th>"
-			+ "                                <th>500E Apt 231</th>"
-			+ "                                <th><select status='selectType' class='input'><option value='Pending' selected>Pending</option><option value='Completed' >Completed</option><option value='In-Progress' >In-Progress</option></th>"
-
-			+ "                                <th>11/25/20</th>"
-			+ "                                <th>12:00 pm</th>"
-			+ "                    			   <th><button id='buy-button' class='btn text-light' type='submit'>Submit</button></th>"
-			+ "                            </tr>"
-			+ "                            <tr>"
-			+ "                                <th>3</th>"
-			+ "                                <th>Dave Adams</th>"
-			+ "                                <th>Cleaning Service</th>"
-			+ "                                <th>Cermak Chinatown</th>"
-			+ "                                <th><select status='selectType' class='input'><option value='Pending' selected>Pending</option><option value='Completed' >Completed</option><option value='In-Progress' >In-Progress</option></th>"
-
-			+ "                                <th>11/25/20</th>"
-			+ "                                <th>3:00pm</th>"
-			+ "                    			   <th><button id='buy-button' class='btn text-light' type='submit'>Submit</button></th>"
-			+ "                            <tr>"
-			+ "                                <th>4</th>"
-			+ "                                <th>Madison Evans</th>"
-			+ "                                <th>Plumbing Service</th>"
-			+ "                                <th>Green Park Avenue</th>"
-			+ "                                <th><select status='selectType' class='input'><option value='Pending' selected>Pending</option><option value='Completed' >Completed</option><option value='In-Progress' >In-Progress</option></th>"
-
-			+ "                                <th>11/25/20</th>"
-			+ "                                <th>9:00am</th>"
-			+ "                    			   <th><button id='buy-button' class='btn text-light' type='submit'>Submit</button></th>"
-			+ "                            </tr>"
-			+ "                            <tr>"
-			+ "                                <th>5</th>"
-			+ "                                <th>John Smith</th>"
-			+ "                                <th>Plumbing Service</th>"
-			+ "                                <th>400E Apt 401</th>"
-			+ "                                <th><select status='selectType' class='input'><option value='Pending' selected>Pending</option><option value='Completed' >Completed</option><option value='In-Progress' >In-Progress</option></th>"
-
-			+ "                                <th>11/25/20</th>"
-			+ "                                <th>10:00am</th>"
-			+ "                    			   <th><button id='buy-button' class='btn text-light' type='submit'>Submit</button></th>"
-			+ "                            </tr>"
-			+ "                            <tr>"
-			+ "                                <th>6</th>"
-			+ "                                <th>Gwen Gibson</th>"
-			+ "                                <th>Cleaning Service</th>"
-			+ "                                <th>East Lake Drive</th>"
-			+ "                                <th><select status='selectType' class='input'><option value='Pending' >Pending</option><option value='Completed' selected>Completed</option><option value='In-Progress' >In-Progress</option></th>"
-
-			+ "                                <th>11/24/20</th>"
-			+ "                                <th>11:00am</th>"
-			+ "                    			   <th><button id='buy-button' class='btn text-light' type='submit'>Submit</button></th>"
-			+ "                            </tr>"
+			+ "                <b>Reason For Leave</b>"
+			+ "                <select status='selectType' class='input'><option value='Medical Leave' >Medical Leave</option><option value='Personal Leave' selected>Personal leave</option><option value='Family Issue Leave' >Family Issue Leave</option><option value='Other Reason' >Other Reason</option>"
             + "                    <input type='hidden' name='Order' value='ViewOrder'>"
-//            + "                    <button id='buy-button' class='btn text-light' type='submit'>Submit</button>"
+            + "                    <button id='buy-button' class='btn text-light' type='submit'>Submit</button>"
             + "                </form>"
             + "            </div>";
 
@@ -253,8 +168,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				}
 			} else {
                 body +=
-                      "                    <div class='alert alert-success' style='color:Green'>"
-                    + "                        Your change has been Submitted"
+                      "                    <div class='alert alert-danger'>"
+                    + "                        Please enter valid order number"
                     + "                    </div>";
 				// pw.print("<h4 style='color:red'>Please enter the valid order number</h4>");	
 			}

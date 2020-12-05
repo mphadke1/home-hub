@@ -96,7 +96,7 @@ public class Utilities extends HttpServlet{
 			}
 			navbar +=
 			  "        <div class='nav-item'>"
-			+ "            <a class='nav-link' href='ViewOrder'>View Orders</a>"
+			+ "            <a class='nav-link' href='ViewOrder'>Work Orders</a>"
 			+ "        </div>"
 			+ "        <div class='nav-item text-light'>"
 			+ "            Hello, " + session.getAttribute("username")
