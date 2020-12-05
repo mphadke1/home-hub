@@ -21,7 +21,7 @@ public class MongoDBDataStoreUtilities
         mongo = new MongoClient("localhost", 27017);
 
         //DB db = mongo.getDB("CustomerReviews");
-        DB db = mongo.getDB("Assignment2CustomerReviews");
+        DB db = mongo.getDB("CustomerReviews1");
         myReviews= db.getCollection("myReviews");
         return myReviews;
     }

@@ -11,7 +11,7 @@ public class MySqlDataStoreUtilities
         try
         {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/assignment2","root","root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","Jenifer7##");
         }
         catch(Exception e)
         {
