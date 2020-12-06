@@ -7,15 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Home")
+@WebServlet("/FurnitureAssembly")
 
-/* 
-	Home class uses the printHtml Function of Utilities class and prints the Header,LeftNavigationBar,
-	Content,Footer of Game Speed Application.
-
-*/
-
-public class Home extends HttpServlet {
+public class FurnitureAssembly extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
@@ -23,10 +17,7 @@ public class Home extends HttpServlet {
 		Utilities utility = new Utilities(request,pw);
 		utility.printHtml("Header.html");
 		utility.printNavbar();
-		utility.printHtml("LeftNavigationBar.html");
-		utility.printHtml("Content.html");
-		// RequestDispatcher rd = request.getRequestDispatcher("DealMatchesUtilities");
-		// rd.include(request,response);
+		utility.printHtml("FurnitureAssembly.html");
 		utility.printHtml("Footer.html");
 	}
 

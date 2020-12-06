@@ -51,15 +51,29 @@ public class Utilities extends HttpServlet{
 
 		String navbar =
 		  "<nav id='navbar' class='sticky-top navbar navbar-expand-sm navbar-dark'>"
-		+ "    <a class='navbar-brand' href='Home'>Best Deal</a>"
+		+ "    <a class='navbar-brand' href='Home'>Home Hub</a>"
 		+ "    <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent'"
 		+ "        aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>"
 		+ "        <span class='navbar-toggler-icon'></span>"
 		+ "    </button>"
 		+ "    <div class='collapse navbar-nav navbar-collapse' id='navbarSupportedContent'>"
-		+ "        <div class='nav-item mr-sm-auto'>"
-		+ "            <a class='nav-link' href='Trending'>Trending</a>"
-		+ "        </div>";
+		+ "			<div class='nav-item dropdown'>"
+		+ "                <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown'"
+		+ "                    aria-haspopup='true' aria-expanded='false'>"
+		+ "                    All Services"
+		+ "                </a>"
+		+ "                <div class='dropdown-menu' aria-labelledby='navbarDropdown'>"
+		+ "                    <a class='dropdown-item' href='#'>Cleaning</a>"
+		+ "                    <a class='dropdown-item' href='#'>TV and Electronics</a>"
+		+ "                    <a class='dropdown-item' href='#'>Assembly</a>"
+		+ "                    <a class='dropdown-item' href='#'>General Handyman</a>"
+		+ "                    <a class='dropdown-item' href='#'>Plumbing</a>"
+		+ "                    <a class='dropdown-item' href='#'>Electrical</a>"
+		+ "                    <a class='dropdown-item' href='#'>Painting</a>"
+		+ "                    <a class='dropdown-item' href='#'>Moving</a>"
+		+ "                    <a class='dropdown-item' href='#'>Smart Home</a>"
+		+ "                </div>"
+		+ "            </div>";
 
 		if(isLoggedin()) {
 			switch(getUserType().toLowerCase()) {
@@ -90,7 +104,7 @@ public class Utilities extends HttpServlet{
 					+ "		   	   <a class='dropdown-item' href='AddWorker'>Add Worker</a>"
 					+ "		   	   </div>"
 					+ "		   </div>"
-					+ "        <div class='nav-item'>"
+					+ "        <div class='nav-item ml-auto'>"
 					+ "            <a class='nav-link' href='CustomerOrders'>Customer Orders</a>"
 					+ "        </div>"
 					+ "        <div class='nav-item'>"
@@ -117,20 +131,14 @@ public class Utilities extends HttpServlet{
 			+ "        <div class='nav-item'>"
 			+ "            <a class='nav-link' href='Logout'>Logout</a>"
 			+ "        </div>"
-			+ "        <button class='btn mx-0 px-0 nav-item content'>"
-			+ "            <a class='nav-link' href='Cart'>Cart <span id='badge' class='badge'>" + getCartCount() + "</span></a>"
-			+ "        </button>"
 			+ "    </div>"
 			+ "</nav>";
 
 		} else {
 			navbar +=
-			  "        <div class='nav-item'>"
+			  "        <div class='nav-item ml-auto'>"
 			+ "            <a class='nav-link' href='Login'>Login</a>"
 			+ "        </div>"
-			+ "        <button class='btn mx-0 px-0 nav-item content'>"
-			+ "            <a class='nav-link' href='Cart'>Cart <span id='badge' class='badge'>0</span></a>"
-			+ "        </button>"
 			+ "    </div>"
 			+ "</nav>";
 		}

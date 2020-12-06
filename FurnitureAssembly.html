@@ -1,0 +1,84 @@
+<div class="container mt-2 py-3 bg-light">
+    <h3 class="mb-2">Furniture Assembly</h3>
+    <hr>
+    <form action="FurnitureAssemblyQuote" class="">
+        <div class="form-row">
+            <div class="form-group col-3">
+                <label for="zipcode">Zipcode</label>
+                <input type="number" name="zipcode" id="zipcode" class="form-control" placeholder="Zipcode" required>
+            </div>
+            <div class="form-group col-2">
+                <label for="small-furniture">Small Furniture</label>
+                <select class="form-control" name="small-furniture" id="small-furniture" required>
+                    <option value="0">0</option>
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group col-2">
+                <label for="medium-furniture">Medium Furniture</label>
+                <select class="form-control" name="medium-furniture" id="medium-furniture" required>
+                    <option value="0">0</option>
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group col-2">
+                <label for="large-furniture">Large Furniture</label>
+                <select class="form-control" name="large-furniture" id="large-furniture" required>
+                    <option value="0">0</option>
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group col-3">
+                <label for="datetimepicker">Date & Time</label>
+                <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker"
+                        data-toggle="datetimepicker" placeholder="Date & Time" name="datetime" required/>
+                    <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-4">
+                <label for="phone">Phone Number (Optional)</label>
+                <input type="tel" name="phone" id="phone" class="form-control"
+                    placeholder="Phone Number (Optional)">
+            </div>
+            <div class="form-group col-4">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description" id="description" cols="30" rows="5"
+                placeholder="Description"></textarea>
+        </div>
+        <input type="hidden" name="type" value="Furniture Assembly"/>
+        <div class="clearfix">
+            <button type="submit" class="btn text-light float-right" id="buy-button">Get Quote</button>
+        </div>
+    </form>
+    <hr>
+    <div class="jumbotron py-2 mb-0">
+        <h3>Why Book Furniture Assebmly Services with Home Hub?</h3>
+        <p class="text-justify">
+            Are you looking for the easiest furniture assembly experience? Do you want only the top furniture
+            assembly pro to come to your home to transform that box of loose pieces of wood into your beautiful
+            dresser or bed frame? With Handy, you’ve come to the right place.
+        </p>
+    </div>
+</div>
