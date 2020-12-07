@@ -52,6 +52,7 @@ public class Utilities extends HttpServlet{
 		String navbar =
 		  "<nav id='navbar' class='sticky-top navbar navbar-expand-sm navbar-dark'>"
 		+ "    <a class='navbar-brand' href='Home'>Home Hub</a>"
+		+ "    <a class='navbar-brand' href='ProductPage'>Products</a>"
 		+ "    <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent'"
 		+ "        aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>"
 		+ "        <span class='navbar-toggler-icon'></span>"

@@ -46,7 +46,7 @@ public class DealMatchesUtilities extends HttpServlet {
 					line = reader.readLine();
 
 					if(line == null) {			
-						body += "                        <div class='mb-3'>No Deals Found</div>";
+						body += "                        <div class='mb-3'>Save $150 on the HP 14 Touch Screen Laptop Intel Core i3 4GB Memory 128GB Solid State Drive - Ash Silver Keyboard Frame. #Deal</div>";
 						break;
 					} else {
 						do {	
@@ -60,7 +60,7 @@ public class DealMatchesUtilities extends HttpServlet {
 				}
 			}
 		} catch(Exception e) {
-			body += "                        No Deals Found";
+			body += "                        Save $150 on the HP 14 Touch Screen Laptop Intel Core i3 4GB Memory 128GB Solid State Drive - Ash Silver Keyboard Frame. #Deal";
 		}	
 			
 		body +=
@@ -71,7 +71,8 @@ public class DealMatchesUtilities extends HttpServlet {
 		if(selectedproducts.size()==0) {
 			body +=
 				  "                <div class='card'>"
-				+ "                    <div class='card-body text-center'>No Deals Found</div>"
+				+ "                    <div class='card-body text-center'>Save $150 on the HP 14 Touch Screen Laptop Intel Core i3 4GB Memory 128GB Solid State Drive - Ash Silver Keyboard Frame. #Deal</div>"
+				+ "                    <div class='card-body tect-center'>Save $500 on the Samsung Harmon Kardon 7.1.4 Channel Soundbar System with 8 Wireless Subwoofer and Dolby Atmos - Midnight Black. #Deal</div>"
 				+ "                </div>";
 		} else {
 			body += "                <div class='row row-cols-2'>";
