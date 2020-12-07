@@ -31,7 +31,7 @@ function formatJsonAccordingToGoogleChart(msg)
     var parsedData = $.parseJSON(newMsg);
     var data = new Array();
 
-    data[0] = ["Product Name", "Number of available products"];
+    data[0] = ["Service Name", "Number of Orders"];
 
     for(var i = 0; i < parsedData.length; i++) {
         data[i + 1] = [parsedData[i].productName, parseInt(parsedData[i].numberOfAvailableProducts)];
@@ -49,7 +49,7 @@ function drawChart(data)
     let chartData = google.visualization.arrayToDataTable(data);
 
     var options = {
-        title: 'Total Products Available',
+        title: 'Total Service Orders',
         bars: 'horizontal', // Required for Material Bar Charts.
         chartArea: {'height': '90%'},
         legend: {'position': 'bottom'}

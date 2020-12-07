@@ -21,7 +21,7 @@ public class DealMatchesUtilities extends HttpServlet {
 		String body =
 			  "			<div class='col-12 col-sm-9'>"
 			+ "                <div class='jumbotron mt-3'>"
-			+ "                    <h1>Welcome to Best Deal</h1>"
+			+ "                    <h1>Welcome to Home Hub Products</h1>"
 			+ "                    <p class='lead'>The world trusts us to deliver SPEEDY service for all fans</p>"
 			+ "                    <hr class='my-4'>"
 			+ "                    <p>We beat our competitors in all aspects. Price-Match Guaranteed</p>"

@@ -39,8 +39,8 @@ public class Cart extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
 		Utilities utility = new Utilities(request,pw);
-		// Carousel carousel = new Carousel();
-		CarouselNew carousel = new CarouselNew();
+		Carousel carousel = new Carousel();
+		// CarouselNew carousel = new CarouselNew();
 		if(!utility.isLoggedin()){
 			HttpSession session = request.getSession(true);				
 			session.setAttribute("login_msg", "Please Login to add items to cart");
@@ -50,7 +50,7 @@ public class Cart extends HttpServlet {
 		
 		utility.printHtml("Header.html");
 		utility.printNavbar();
-		utility.printHtml("LeftNavigationBar.html");
+		utility.printHtml("LeftNavigationBar1.html");
 
 		String body =
 		  "		<div class='col-12 col-sm-9'>"

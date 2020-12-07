@@ -64,15 +64,15 @@ public class Utilities extends HttpServlet{
 		+ "                    All Services"
 		+ "                </a>"
 		+ "                <div class='dropdown-menu' aria-labelledby='navbarDropdown'>"
-		+ "                    <a class='dropdown-item' href='#'>Cleaning</a>"
-		+ "                    <a class='dropdown-item' href='#'>TV and Electronics</a>"
-		+ "                    <a class='dropdown-item' href='#'>Assembly</a>"
-		+ "                    <a class='dropdown-item' href='#'>General Handyman</a>"
-		+ "                    <a class='dropdown-item' href='#'>Plumbing</a>"
-		+ "                    <a class='dropdown-item' href='#'>Electrical</a>"
-		+ "                    <a class='dropdown-item' href='#'>Painting</a>"
-		+ "                    <a class='dropdown-item' href='#'>Moving</a>"
-		+ "                    <a class='dropdown-item' href='#'>Smart Home</a>"
+		+ "                    <a class='dropdown-item' href='Home#cleaning'>Cleaning</a>"
+		+ "                    <a class='dropdown-item' href='Home#tv-electronics'>TV and Electronics</a>"
+		+ "                    <a class='dropdown-item' href='Home#assembly'>Assembly</a>"
+		+ "                    <a class='dropdown-item' href='Home#general-handyman'>General Handyman</a>"
+		+ "                    <a class='dropdown-item' href='Home#plumbing'>Plumbing</a>"
+		+ "                    <a class='dropdown-item' href='Home#electrical'>Electrical</a>"
+		+ "                    <a class='dropdown-item' href='Home#painting'>Painting</a>"
+		+ "                    <a class='dropdown-item' href='Home#moving'>Moving</a>"
+		+ "                    <a class='dropdown-item' href='Home#smart-home'>Smart Home</a>"
 		+ "                </div>"
 		+ "            </div>";
 
@@ -91,9 +91,9 @@ public class Utilities extends HttpServlet{
 					+ "		   	       Reports"
 					+ "		   	   </a>"
 					+ "		   	   <div class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>"
-					+ "		   	   <a class='dropdown-item' href='Inventory'>Inventory Report</a>"
-					+ "		   	   <a class='dropdown-item' href='SalesReport'>Sales Report</a>"
-					+ "            <a class='dropdown-item' href='WorkerReport'>Worker Report</a>"
+					+ "		   	   <a class='dropdown-item' href='Inventory'>Service Reports</a>"
+					+ "		   	   <a class='dropdown-item' href='SalesReport'>Product Reports</a>"
+					+ "            <a class='dropdown-item' href='WorkerReport'>Worker Reports</a>"
 					+ "		   	   </div>"
 					+ "		   </div>"
 					+ "		   <div class='nav-item dropdown'>"
@@ -114,16 +114,19 @@ public class Utilities extends HttpServlet{
 					break;
 				case "worker":
 					navbar +=
-					  "        <div class='nav-item'>"
-					+ "            <a class='nav-link' href='ApplyForLeave'>Apply For Leave</a>"
+					  "        <div class='nav-item ml-auto'>"
+					+ "            <a class='nav-link' href='WorkerWorkOrder'>Work Orders</a>"
+					+ "        </div>";
+					break;
+				case "customer":
+					navbar +=
+					  "        <div class='nav-item ml-auto'>"
+					+ "            <a class='nav-link' href='CustomerWorkOrder'>Work Orders</a>"
 					+ "        </div>";
 					break;
 			}
 			navbar +=
-			  "        <div class='nav-item'>"
-			+ "            <a class='nav-link' href='ViewOrder'>Work Orders</a>"
-			+ "        </div>"
-			+ "        <div class='nav-item text-light'>"
+			  "        <div class='nav-item text-light'>"
 			+ "            Hello, " + session.getAttribute("username")
 			+ "        </div>"
 			+ "        <div class='nav-item'>"

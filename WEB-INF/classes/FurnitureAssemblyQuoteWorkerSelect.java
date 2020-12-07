@@ -21,7 +21,6 @@ public class FurnitureAssemblyQuoteWorkerSelect extends HttpServlet
     {
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-        //displayInventory(request, response);
         Utilities utility = new Utilities(request, pw);
 
         try {
@@ -44,11 +43,11 @@ public class FurnitureAssemblyQuoteWorkerSelect extends HttpServlet
             + "        <div class='row row-cols-2 pb-3'>"
             + "            <div class='col-8 mt-3'>"
             + "                <h3>Set up your Service</h3>"
-            + "                <form action='WorkerList'>"
+            + "                <form action='FurnitureAssemblyQuoteWorkerSelect' method='POST'>"
             + "                    <div class='form-row'>"
             + "                        <div class='form-group col-3'>"
             + "                            <label for='coupon'>Coupon Code (Optional)</label>"
-            + "                            <input type='text' class='form-control' placeholder='Coupon Code' value='NEWUSER'>"
+            + "                            <input type='text' class='form-control' placeholder='Coupon Code' value='30OFF'>"
             + "                            <div class='text-success'>Coupon Applied</div>"
             + "                        </div>"
             + "                    </div>"
@@ -181,6 +180,46 @@ public class FurnitureAssemblyQuoteWorkerSelect extends HttpServlet
 
             pw.print(body);
 
+            utility.printHtml("Footer.html");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException {
+
+        response.setContentType("text/html");
+		PrintWriter pw = response.getWriter();
+        Utilities utility = new Utilities(request, pw);
+
+        try {
+            utility.printHtml("Header.html");
+            utility.printNavbar();
+
+            String small, medium, large;
+            small = request.getParameter("small-furniture");
+            medium = request.getParameter("medium-furniture");
+            large = request.getParameter("large-furniture");
+            String oldDate = request.getParameter("datetime");
+            SimpleDateFormat ipdf = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
+            Date inputDate = ipdf.parse(oldDate);
+            SimpleDateFormat opdf = new SimpleDateFormat("MMM dd, yyyy @ hh:mm aa");
+            String date = opdf.format(inputDate);
+
+            String body =
+            "    <div class='container mt-2 py-3 bg-light' style='height: 47vh;'>"
+            + "        <div class='alert alert-info'>"
+            + "            Your Order has been placed successfully.<br><br>"
+            + "            Order Details:<br>"
+            + "            Small Furniture - " + small + "<br>"
+            + "            Medium Furniture - " + medium + "<br>"
+            + "            Large Furniture - " + large + "<br>"
+            + "            Date & Time - " + date + "<br>"
+            + "        </div>"
+            + "    </div>";
+
+            pw.print(body);
             utility.printHtml("Footer.html");
         } catch(Exception e) {
             e.printStackTrace();

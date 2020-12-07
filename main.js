@@ -1,32 +1,35 @@
-$( function() {
-    var Services = [
-      "Home Cleaning",
-      "Furniture Assembly",
-      "Handyman Services",
-      "Hanging Pictures & Shelves",
-      "Office Cleaning",
-      "TV Mounting",
-      "Home Theater AV Setup",
-      "Bed Assembly",
-      "Office Furniture Assembly",
-      "Faucet Replacement",
-      "Toilet Trouble",
-      "Plumbing Services",
-      "Outlet Installation",
-      "Light Fixtures",
-      "Electrical Service",
-      "Interior Painting",
-      "Bedroom Painting",
-      "Accent Wall Painting",
-      "Moving Help",
-      "Smart Home Hub Setup",
-      "Smart Security Cam Installation",
-      "Smart Device Installation"
-    ];
-    $( "#search" ).autocomplete({
-      source: Services
-    });
-  } );
+$(function () {
+	var Services = [
+		"Home Cleaning",
+		"Furniture Assembly",
+		"Handyman Services",
+		"Hanging Pictures & Shelves",
+		"Office Cleaning",
+		"TV Mounting",
+		"Home Theater AV Setup",
+		"Bed Assembly",
+		"Office Furniture Assembly",
+		"Faucet Replacement",
+		"Toilet Trouble",
+		"Plumbing Services",
+		"Outlet Installation",
+		"Light Fixtures",
+		"Electrical Service",
+		"Interior Painting",
+		"Bedroom Painting",
+		"Accent Wall Painting",
+		"Moving Help",
+		"Smart Home Hub Setup",
+		"Smart Security Cam Installation",
+		"Smart Device Installation"
+	];
+	$("#search").autocomplete({
+		source: Services,
+		select: function() {
+			window.location.href = "/home-hub/FurnitureAssembly";
+		}
+	});
+});
 
 
 // $(function () {

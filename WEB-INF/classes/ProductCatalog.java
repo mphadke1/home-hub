@@ -27,19 +27,22 @@ public class ProductCatalog extends HttpServlet {
         String productType = request.getParameter("productType");
 
         Boolean success = false;
-        switch(productType.toLowerCase()) {
-            case "tv":
-                TV ret = SaxParserDataStore.tvs.remove(productId);
-                if(ret != null) {
-                    success = true;
-                }
-                break;
-        }
-        if(success) {
-            success_msg = "Product deleted successfully";
-        } else {
-            error_msg = "There was an error deleting the product";
-        }
+        // switch(productType.toLowerCase()) {
+        //     case "tv":
+        //         TV ret = SaxParserDataStore.tvs.remove(productId);
+        //         if(ret != null) {
+        //             success = true;
+        //         }
+        //         break;
+        // }
+
+        MySqlDataStoreUtilities.deleteproducts(productId);
+		success = true;
+		success_msg = "Product deleted successfully";
+        // if(success) {
+        // } else {
+        //     error_msg = "There was an error deleting the product";
+        // }
 
         displayProductCatalog(request, response, success, !success);
 	}

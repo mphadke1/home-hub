@@ -34,10 +34,10 @@ public class HeatMap extends HttpServlet
             
             utility.printHtml("Header.html");
             utility.printNavbar();
-            utility.printHtml("LeftNavigationBar.html");
 
             String body =
-              "            <div class='col-12 col-sm-9'>"
+              "        <div class='container mt-3 bg-light'>"
+            + "            <div class='col-12 col-sm-9'>"
             + "                <h2 class='mx-3'>Heat Map</h2>"
             + "                <hr>"
             + "                <form>"
@@ -90,31 +90,137 @@ public class HeatMap extends HttpServlet
 
             String jsonResponse = "";
             ArrayList<HeatMapData> dataList = new ArrayList <HeatMapData>();
-            switch(type) {
-                case "transactions":
-                    dataList = MySqlDataStoreUtilities.getHeatMapDataForTransactions();
-                    jsonResponse = new Gson().toJson(dataList);
-                    break;
-                case "pickups":
-                    dataList = MySqlDataStoreUtilities.getHeatMapDataForPickups();
-                    jsonResponse = new Gson().toJson(dataList);
-                    break;
-                case "reviews":
-                    dataList = Utilities.getHeatMapDataForTotalReviews();
-                    jsonResponse = new Gson().toJson(dataList);
-                    break;
-                case "likedProducts":
-                    dataList = Utilities.getHeatMapDataForLikedProducts();
-                    jsonResponse = new Gson().toJson(dataList);
-                    break;
-                case "dislikedProducts":
-                    dataList = Utilities.getHeatMapDataForDislikedProducts();
-                    jsonResponse = new Gson().toJson(dataList);
-                    break;
-                case "default":
-                    jsonResponse = new Gson().toJson(new ArrayList<>());
-                    break;
-            }
+            // switch(type) {
+            //     case "transactions":
+            //         dataList = MySqlDataStoreUtilities.getHeatMapDataForTransactions();
+            //         jsonResponse = new Gson().toJson(dataList);
+            //         break;
+            //     case "pickups":
+            //         dataList = MySqlDataStoreUtilities.getHeatMapDataForPickups();
+            //         jsonResponse = new Gson().toJson(dataList);
+            //         break;
+            //     case "reviews":
+            //         dataList = Utilities.getHeatMapDataForTotalReviews();
+            //         jsonResponse = new Gson().toJson(dataList);
+            //         break;
+            //     case "likedProducts":
+            //         dataList = Utilities.getHeatMapDataForLikedProducts();
+            //         jsonResponse = new Gson().toJson(dataList);
+            //         break;
+            //     case "dislikedProducts":
+            //         dataList = Utilities.getHeatMapDataForDislikedProducts();
+            //         jsonResponse = new Gson().toJson(dataList);
+            //         break;
+            //     case "default":
+            //         jsonResponse = new Gson().toJson(new ArrayList<>());
+            //         break;
+            // }
+
+            Random rn = new Random();
+
+            int weight = 0;
+            weight = rn.nextInt(50);
+            dataList.add(new HeatMapData(
+                "Glenview",
+                "1851 Tower Drive",
+                "Glenview",
+                "IL",
+                60026,
+                weight
+            ));
+            
+            weight = rn.nextInt(50);            
+            dataList.add(new HeatMapData(
+                "Niles",
+                "5681 West Touhy Avenue",
+                "Niles",
+                "IL",
+                60714,
+                weight
+            ));
+            weight = rn.nextInt(50);            
+            dataList.add(new HeatMapData(
+                "Evanston",
+                "930 Church Street",
+                "Evanston",
+                "IL",
+                60201,
+                weight
+            ));
+            weight = rn.nextInt(50);            
+            dataList.add(new HeatMapData(
+                "Arlington Heights",
+                "66 S. Arlington Heights Road",
+                "Arlington Heights",
+                "IL",
+                60005,
+                weight
+            ));
+            weight = rn.nextInt(50);            
+            dataList.add(new HeatMapData(
+                "Lincolnshire",
+                "900 Milwaukee Avenue Suite A",
+                "Lincolnshire",
+                "IL",
+                60069,
+                weight
+            ));
+            weight = rn.nextInt(50);            
+            dataList.add(new HeatMapData(
+                "La Grange",
+                "1 East Burlington Avenue",
+                "LaGrange",
+                "IL",
+                60525,
+                weight
+            ));
+            weight = rn.nextInt(50);            
+            dataList.add(new HeatMapData(
+                "Park Ridge",
+                "510 W. Touhy",
+                "Parkridge",
+                "IL",
+                60068,
+                weight
+            ));
+            weight = rn.nextInt(50);            
+            dataList.add(new HeatMapData(
+                "Naperville",
+                "207 South Washington",
+                "Naperville",
+                "IL",
+                60540,
+                weight
+            ));
+            weight = rn.nextInt(50);            
+            dataList.add(new HeatMapData(
+                "Geneva",
+                "1310 Commons Drive",
+                "Geneva",
+                "IL",
+                60134,
+                weight
+            ));
+            weight = rn.nextInt(50);            
+            dataList.add(new HeatMapData(
+                "Bolingbrook",
+                "137 N. Weber Road",
+                "Bolingbrook",
+                "IL",
+                60440,
+                weight
+            ));
+            weight = rn.nextInt(50);            
+            dataList.add(new HeatMapData(
+                "Chicago",
+                "401 East 32nd Street",
+                "Chicago",
+                "IL",
+                60440,
+                weight * 10
+            ));
+
+            jsonResponse = new Gson().toJson(dataList);
 
             response.setContentType("application/JSON");
             response.setCharacterEncoding("UTF-8");

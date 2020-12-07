@@ -53,7 +53,7 @@ public class TVList extends HttpServlet {
 		Utilities utility = new Utilities(request,pw);
 		utility.printHtml("Header.html");
 		utility.printNavbar();
-		utility.printHtml("LeftNavigationBar.html");
+		utility.printHtml("LeftNavigationBar1.html");
 
 		String body = 
 		  "	  <div class='col-12 col-sm-9'>"

@@ -18,6 +18,13 @@ public class NoOfAvailableProducts implements Serializable
         this.manufacturerRebate = manufacturerRebate;
     }
 
+    public NoOfAvailableProducts(String productName, String numberOfAvailableProducts, String productPrice)
+    {
+        this.productName = productName;
+        this.numberOfAvailableProducts = numberOfAvailableProducts;
+        this.productPrice = productPrice;
+    }
+
     public String getProductName()
     {
 		return productName;

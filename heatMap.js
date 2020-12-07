@@ -41,7 +41,7 @@ $(document).ready(() => {
     
                     let heatmap = new google.maps.visualization.HeatmapLayer({
                         data: heatMapData,
-                        radius: 35
+                        radius: 70
                     });
                     heatmap.setMap(map);
                 })

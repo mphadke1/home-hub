@@ -2,10 +2,11 @@ let inputCount = 0;
 
 $(document).ready(()=> {
     $("button[name='add-button']").click(addElement);
-    $("button[type='submit']").click(submitData);
+    // $("button[type='submit']").click(submitData);
 })
 
-function addElement() {
+function addElement(e) {
+    e.preventDefault();
     switch ($("#type").val()) {
         case "project":
             addProjectRow();
@@ -37,7 +38,7 @@ function removeElement(e) {
 }
 
 function addProjectRow() {
-    $("form").append(
+    $("#add-stuff").append(
           '<div type="project" id="' + ++inputCount + '" class="form-group row">'
         + '    <label class="col-sm-2 col-form-label">Project Field</label>'
         + '    <div class="col-sm-8">'
@@ -68,7 +69,7 @@ function addProjectRow() {
 }
 
 function addRegexRow() {
-    $("form").append(
+    $("#add-stuff").append(
           '<div type="regex" id="' + ++inputCount + '" class="form-group row">'
         + '    <label class="col-sm-2 col-form-label">Regex Find</label>'
         + '    <div class="col-sm-3">'
@@ -101,7 +102,7 @@ function addRegexRow() {
 }
 
 function addFilterRow() {
-    $("form").append(
+    $("#add-stuff").append(
           '<div type="filter" id="' + ++inputCount + '" class="form-group row">'
         + '    <label class="col-sm-1 col-form-label">Filter</label>'
         + '    <div class="col-sm-3">'
@@ -142,7 +143,7 @@ function addFilterRow() {
 }
 
 function addLimitRow() {
-    $("form").append(
+    $("#add-stuff").append(
           '<div type="limit" id="' + ++inputCount + '" class="form-group row">'
         + '    <label class="col-sm-2 col-form-label">Limit By</label>'
         + '    <input class="col-sm-8 form-control" type="number" name="limit-number" id="limit-number-' + inputCount + '" placeholder="Number">'
@@ -155,7 +156,7 @@ function addLimitRow() {
 }
 
 function addSortRow() {
-    $("form").append(
+    $("#add-stuff").append(
           '<div type="sort" id="' + ++inputCount + '" class="form-group row">'
         + '    <label class="col-sm-2 col-form-label">Sort By</label>'
         + '    <div class="col-sm-4">'
@@ -192,7 +193,7 @@ function addSortRow() {
 }
 
 function addGroupRow() {
-    $("form").append(
+    $("#add-stuff").append(
           '<div type="group" id="' + ++inputCount + '" class="form-group row">'
         + '    <label class="col-sm-1 col-form-label">Group By</label>'
         + '    <div class="col-sm-3">'
@@ -247,52 +248,52 @@ function addGroupRow() {
     $("button#remove-" + inputCount).click(removeElement);
 }
 
-function submitData(e) {
-    e.preventDefault();
+// function submitData(e) {
+//     e.preventDefault();
 
-    let jsonData = [];
-    $("div.row.form-group").each(function() {
-        let attr = $(this).attr('type');
-        if (typeof attr == typeof undefined || attr == false) {
-            return;
-        }
+//     let jsonData = [];
+//     $("div.row.form-group").each(function() {
+//         let attr = $(this).attr('type');
+//         if (typeof attr == typeof undefined || attr == false) {
+//             return;
+//         }
         
-        switch ($(this).attr('type')) {
-            case "project":
-                jsonData.push(getProjectData($(this).attr('id')));
-                break;
-            case "regex":
-                jsonData.push(getRegexData($(this).attr('id')));
-                break;
-            case "filter":
-                jsonData.push(getFilterData($(this).attr('id')));
-                break;
-            case "limit":
-                jsonData.push(getLimitData($(this).attr('id')));
-                break;
-            case "sort":
-                jsonData.push(getSortData($(this).attr('id')));
-                break;
-            case "group":
-                jsonData.push(getGroupData($(this).attr('id')));
-                break;
+//         switch ($(this).attr('type')) {
+//             case "project":
+//                 jsonData.push(getProjectData($(this).attr('id')));
+//                 break;
+//             case "regex":
+//                 jsonData.push(getRegexData($(this).attr('id')));
+//                 break;
+//             case "filter":
+//                 jsonData.push(getFilterData($(this).attr('id')));
+//                 break;
+//             case "limit":
+//                 jsonData.push(getLimitData($(this).attr('id')));
+//                 break;
+//             case "sort":
+//                 jsonData.push(getSortData($(this).attr('id')));
+//                 break;
+//             case "group":
+//                 jsonData.push(getGroupData($(this).attr('id')));
+//                 break;
         
-            default:
-                break;
-        }
-    })
+//             default:
+//                 break;
+//         }
+//     })
 
-    console.log(jsonData);
-    $.ajax({
-        url: "DataAnalytics",
-        type: "POST",
-        data: { data: JSON.stringify(jsonData) },
-        contentType: "application/x-www-form-urlencoded; charset=utf-8",
-        dataType: "json",
-        success: function (msg) {
-        }
-    })
-}
+//     console.log(jsonData);
+//     $.ajax({
+//         url: "DataAnalytics",
+//         type: "POST",
+//         data: { data: JSON.stringify(jsonData) },
+//         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+//         dataType: "json",
+//         success: function (msg) {
+//         }
+//     })
+// }
 
 function getProjectData(id) {
     return {

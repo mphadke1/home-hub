@@ -33,11 +33,40 @@ public class SalesReport extends HttpServlet
             
             utility.printHtml("Header.html");
             utility.printNavbar();
-            utility.printHtml("LeftNavigationBar.html");
 
             String body =
-              "            <div class='col-12 col-sm-9'>"
-            + "                <h1 class='mb-3'>Sales</h1>"
+              "        <div class='container mt-3 bg-light'>"
+            + "            <div class='col-12 col-sm-9'>"
+            + "                <h1 class='mb-3'>Product Reports</h1>"
+            + "                <hr>"
+            + "                <h4 class='mb-3'>Available Products Table</h4>"
+            + "                <table class='gridDataTable display'>"
+            + "                    <thead>"
+            + "                        <tr>"
+            + "                            <td>Sr No.</td>"
+            + "                            <td>Product Name</td>"
+            + "                            <td>Product Price</td>"
+            + "                            <td>Number of Available Products</td>"
+            + "                        </tr>"
+            + "                    </thead>"
+            + "                    <tbody>";
+            ArrayList <NoOfAvailableProducts> availableProductsList = new ArrayList <NoOfAvailableProducts> ();
+            availableProductsList = MySqlDataStoreUtilities.availableProductsList();
+            int i = 1;
+            for(NoOfAvailableProducts product : availableProductsList) {
+                body +=
+                  "                        <tr>"
+                + "                            <td>" + i + "</td>"
+                + "                            <td>" + product.getProductName() + "</td>"
+                + "                            <td>" + product.getProductPrice() + "</td>"
+                + "                            <td>" + product.getNumberOfAvailableProducts() + "</td>"
+                + "                        </tr>";
+                i++;
+            }
+
+            body +=
+              "                    </tbody>"
+            + "                </table>"
             + "                <hr>"
             + "                <h4 class='mb-3'>Total Products Sold and Sales Table</h4>"
             + "                <table class='gridDataTable display'>"
@@ -54,7 +83,7 @@ public class SalesReport extends HttpServlet
 
             ArrayList <NoOfProductsSold> totalSoldProductsList = new ArrayList <NoOfProductsSold> ();
             totalSoldProductsList = MySqlDataStoreUtilities.totalSoldProductsList();
-            int i = 1;
+            i = 1;
             for(NoOfProductsSold product : totalSoldProductsList)
             {
                 body +=
@@ -72,41 +101,12 @@ public class SalesReport extends HttpServlet
               "                    </tbody>"
             + "                </table>"
             + "                <hr>"
-            + "                <h4 class='mb-3'>Total Prodcusts Sold and Sales Graph</h4>"
+            + "                <h4 class='mb-3'>Total Product Sales Graph</h4>"
             + "                <div id='chartDivTotalProductSales' style='height: 150vh'></div>"
-            + "                <hr class='mt-5'>"
-            + "                <h4 class='mb-3'>Total Daily Sales Table</h4>"
-            + "                <table class='gridDataTable display'>"
-            + "                    <thead>"
-            + "                        <tr>"
-            + "                            <td>Sr No.</td>"
-            + "                            <td>Date</td>"
-            + "                            <td>Product and Price List</td>"
-            + "                            <td>Total Sales</td>"
-            + "                        </tr>"
-            + "                    </thead>"
-            + "                    <tbody>";
-
-            ArrayList <TotalSalesDaily> totalSalesDailyOrdersList = new ArrayList <TotalSalesDaily> ();
-            totalSalesDailyOrdersList = MySqlDataStoreUtilities.totalSalesDailyOrdersList();
-            i = 1;
-            for(TotalSalesDaily order : totalSalesDailyOrdersList)
-            {
-                body +=
-                  "                        <tr>"
-                + "                            <td>" + i + "</td>"
-                + "                            <td>" + order.getOrderDate() + "</td>"
-                + "                            <td>" + order.getProductsListDesciption() + "</td>"
-                + "                            <td>" + order.getTotalDailySales() + "</td>"
-                + "                        </tr>";
-                i++;
-            }
-            body +=
-              "                    </tbody>"
-            + "                </table>"
+            + "                <hr class='mb-3'>"
             + "            </div>"
             + "        </div>"
-            + "    </div>"
+            // + "    </div>"
             + "    <script type='text/javascript' src=\"https://www.gstatic.com/charts/loader.js\"></script>"
             + "    <script type='text/javascript' src='salesReport.js'></script>";
 

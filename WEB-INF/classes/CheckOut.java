@@ -45,7 +45,7 @@ public class CheckOut extends HttpServlet {
             String orderTotal = request.getParameter("orderTotal");
             utility.printHtml("Header.html");
             utility.printNavbar();
-            utility.printHtml("LeftNavigationBar.html");
+            utility.printHtml("LeftNavigationBar1.html");
 
             String body =
               "            <div class='col-12 col-sm-9'>"

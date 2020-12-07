@@ -24,6 +24,7 @@ public class AvailableProductsAPI extends HttpServlet
         try {
             ArrayList <NoOfAvailableProducts> availableProductsList = new ArrayList <NoOfAvailableProducts> ();
             availableProductsList = MySqlDataStoreUtilities.availableProductsList();
+            availableProductsList = Inventory.getFakeAvailableProducts();
             //ArrayList<Review> topReviewsPerCity = getTop3InEveryCity(reviews);
 
             String reviewJson = new Gson().toJson(availableProductsList);

@@ -1,0 +1,155 @@
+<div class="container mt-2 py-3 bg-light">
+    <h2 class="m-3">Your Work Orders</h2>
+    <div class='m-3'>
+        <form action='WorkerWorkOrder' method='POST'>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Type of Service</th>
+                        <th>Address</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Mariana Goddard</td>
+                    <td>Furniture Assembly</td>
+                    <td>401 E 32nd St</td>
+                    <td>
+                        <select name="status" id="status">
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Complete">Complete</option>
+                        </select>
+                    </td>
+                    <td>12/07/20</td>
+                    <td>5:00 PM</td>
+                    <td><button type="submit" id='buy-button' class='btn text-light' type='submit'>Change Status</button></td>
+                </tr>
+                <tr>
+                    <td>Karan Shea</td>
+                    <td>Furniture Assembly</td>
+                    <td>481 Hall Street Clifton Park, NY 12065</td>
+                    <td>
+                        <select name="status" id="status">
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Complete">Complete</option>
+                        </select>
+                    </td>
+                    <td>11/2/2020</td>
+                    <td>09:05 AM</td>
+                    <td><button type="submit" id='buy-button' class='btn text-light' type='submit'>Change Status</button></td>
+                </tr>
+                <tr>
+                    <td>Kelan Farmer</td>
+                    <td>Furniture Assembly</td>
+                    <td>9892 Bayport St. Allentown</td>
+                    <td>
+                        <select name="status" id="status">
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress" selected>In Progress</option>
+                            <option value="Complete">Complete</option>
+                        </select>
+                    </td>
+                    <td>11/6/2020</td>
+                    <td>09:45 AM</td>
+                    <td><button type="submit" id='buy-button' class='btn text-light' type='submit'>Change Status</button></td>
+                </tr>
+                <tr>
+                    <td>Zayn Mohammed</td>
+                    <td>Furniture Assembly</td>
+                    <td>8767 E. James Avenue Batavia</td>
+                    <td>
+                        <select name="status" id="status">
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress" selected>In Progress</option>
+                            <option value="Complete">Complete</option>
+                        </select>
+                    </td>
+                    <td>11/7/2020</td>
+                    <td>10:15 AM</td>
+                    <td><button type="submit" id='buy-button' class='btn text-light' type='submit'>Change Status</button></td>
+                </tr>
+                <tr>
+                    <td>Fraser Fields</td>
+                    <td>Furniture Assembly</td>
+                    <td>19 Wintergreen Rd. Sunnyside</td>
+                    <td>
+                        <select name="status" id="status">
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress" selected>In Progress</option>
+                            <option value="Complete">Complete</option>
+                        </select>
+                    </td>
+                    <td>11/9/2020</td>
+                    <td>10:50 AM</td>
+                    <td><button type="submit" id='buy-button' class='btn text-light' type='submit'>Change Status</button></td>
+                </tr>
+                <tr>
+                    <td>Alivia</td>
+                    <td>Furniture Assembly</td>
+                    <td>14 Rockledge Street Liverpool</td>
+                    <td>
+                        <select name="status" id="status">
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Complete" selected>Complete</option>
+                        </select>
+                    </td>
+                    <td>11/11/2020</td>
+                    <td>11:45 AM</td>
+                    <td><button type="submit" id='buy-button' class='btn text-light' type='submit'>Change Status</button></td>
+                </tr>
+                <tr>
+                    <td>Mcguire</td>
+                    <td>Furniture Assembly</td>
+                    <td>9 Fairground St. Akron</td>
+                    <td>
+                        <select name="status" id="status">
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Complete" selected>Complete</option>
+                        </select>
+                    </td>
+                    <td>11/15/2020</td>
+                    <td>01:00 PM</td>
+                    <td><button type="submit" id='buy-button' class='btn text-light' type='submit'>Change Status</button></td>
+                </tr>
+                <tr>
+                    <td>Tanya Benjamin</td>
+                    <td>Furniture Assembly</td>
+                    <td>579 Garden Street New Hyde Park</td>
+                    <td>
+                        <select name="status" id="status">
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Complete" selected>Complete</option>
+                        </select>
+                    </td>
+                    <td>11/19/2020</td>
+                    <td>02:30 PM</td>
+                    <td><button type="submit" id='buy-button' class='btn text-light' type='submit'>Change Status</button></td>
+                </tr>
+                <tr>
+                    <td>Alec Chung</td>
+                    <td>Furniture Assembly</td>
+                    <td>9040 High Noon St. Indiana</td>
+                    <td>
+                        <select name="status" id="status">
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Complete" selected>Complete</option>
+                        </select>
+                    </td>
+                    <td>11/24/2020</td>
+                    <td>03:40 PM</td>
+                    <td><button type="submit" id='buy-button' class='btn text-light' type='submit'>Change Status</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

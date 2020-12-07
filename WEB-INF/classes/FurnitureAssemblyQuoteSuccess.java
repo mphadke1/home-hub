@@ -48,7 +48,7 @@ public class FurnitureAssemblyQuoteSuccess extends HttpServlet
             + "                    <div class='form-row'>"
             + "                        <div class='form-group col-3'>"
             + "                            <label for='coupon'>Coupon Code (Optional)</label>"
-            + "                            <input type='text' class='form-control' placeholder='Coupon Code' value='NEWUSER'>"
+            + "                            <input type='text' class='form-control' placeholder='Coupon Code' value='30OFF'>"
             + "                            <div class='text-success'>Coupon Applied</div>"
             + "                        </div>"
             + "                    </div>"

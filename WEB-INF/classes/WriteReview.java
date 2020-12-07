@@ -37,44 +37,41 @@ public class WriteReview extends HttpServlet
                 response.sendRedirect("Login");
                 return;
 		    }
-            String productname=request.getParameter("name");		
-            String producttype=request.getParameter("type");
-            String productmaker=request.getParameter("maker");
-            String productprice=request.getParameter("price");
+            String productname="";
+            String producttype="";
+            String productmaker="";
+            String productprice="";
 
 
             utility.printHtml("Header.html");
             utility.printNavbar();
-            utility.printHtml("LeftNavigationBar.html");
+            // utility.printHtml("LeftNavigationBar.html");
 
             String body = 
-              "        <div class='col-12 col-sm-9'>"
+              "    <div class='container mt-3 bg-light'>"
+            + "        <div class='col-12 col-sm-9'>"
             + "            <h3 class='mx-3'>Write Review</h3>"
             + "            <hr>"
             + "            <form action='SubmitReview' method='POST'>"
             + "                <div class='form-row'>"
             + "                    <div class='form-group col-6'>"
-            + "                        <label for='productname'>Product Name</label>"
-            + "                        <input class='form-control' type='text' name='productname' id='productname' value='" + productname + "' placeholder='Enter Product Name' required readonly='true'>"
+            + "                        <label for='productname'>Worker Name</label>"
+            + "                        <input class='form-control' type='text' name='productname' id='productname' value='Edgar Leeder' placeholder='Enter Worker Name' required readonly='true'>"
             + "                    </div>"
             + "                    <div class='form-group col-6'>"
-            + "                        <label for='producttype'>Product Type</label>"
-            + "                        <input class='form-control' type='text' name='producttype' id='producttype' value='" + producttype + "' placeholder='Enter Product Type' required readonly='true'>"
+            + "                        <label for='producttype'>Service Type</label>"
+            + "                        <input class='form-control' type='text' name='producttype' id='producttype' value='Furniture Assembly' placeholder='Enter Service Type' required readonly='true'>"
             + "                    </div>"
             + "                </div>"
             + "                <div class='form-row'>"
             + "                    <div class='form-group col-6'>"
-            + "                        <label for='productprice'>Product Price ($)</label>"
-            + "                        <input class='form-control' step='any' type='number' name='productprice' id='productprice' value='" + productprice + "' placeholder='Enter Product Price' required readonly='true'>"
-            + "                    </div>"
-            + "                    <div class='form-group col-6'>"
-            + "                        <label for='productmaker'>Product Manufacturer</label>"
-            + "                        <input class='form-control' type='text' name='productmaker' id='productmaker' value='" + productmaker + "' placeholder='Enter Product Manufacturer' required readonly='true'>"
+            + "                        <label for='productprice'>Service Price ($)</label>"
+            + "                        <input class='form-control' step='any' type='number' name='productprice' id='productprice' value='70' placeholder='Enter Product Price' required readonly='true'>"
             + "                    </div>"
             + "                </div>"
             + "                <div class='form-row'>"
             + "                    <div class='form-group col-2'>"
-            + "                        <label for='reviewrating'>Product Rating</label>"
+            + "                        <label for='reviewrating'>Worker Rating</label>"
             + "                        <select class='form-control' name='reviewrating' id='reviewrating' required>"
             + "                            <option value='1'>1</option>"
             + "                            <option value='2'>2</option>"
@@ -86,12 +83,12 @@ public class WriteReview extends HttpServlet
             + "                </div>"
             + "                <div class='form-row'>"
             + "                    <div class='form-group col-6'>"
-            + "                        <label for='zipcode'>Retailer Zip Code</label>"
-            + "                        <input class='form-control' step='1' type='number' name='zipcode' id='zipcode' placeholder='Enter Zip Code' required>"
+            + "                        <label for='zipcode'>Zip Code</label>"
+            + "                        <input class='form-control' step='1' type='number' name='zipcode' id='zipcode' value='60616' placeholder='Enter Zip Code' required disabled>"
             + "                    </div>"
             + "                    <div class='form-group col-6'>"
-            + "                        <label for='retailercity'>Retailer City</label>"
-            + "                        <input class='form-control' type='text' name='retailercity' id='retailercity' placeholder='Enter City' required>"
+            + "                        <label for='retailercity'>City</label>"
+            + "                        <input class='form-control' type='text' name='retailercity' id='retailercity' value='Chicago' placeholder='Enter City' required disabled>"
             + "                    </div>"
             + "                </div>"
             + "                <div class='form-row'>"
@@ -125,8 +122,8 @@ public class WriteReview extends HttpServlet
             + "                <input type='submit' id='buy-button' class='btn text-light' value='Submit Review'>"
             + "            </form>"
             + "        </div>"
-            + "    </div>"
-            + "</div>";
+            + "    </div>";
+            // + "</div>";
 
             pw.print(body);	
             utility.printHtml("Footer.html");
@@ -141,5 +138,6 @@ public class WriteReview extends HttpServlet
     {
         response.setContentType("text/html");
         PrintWriter pw = response.getWriter();
+        doPost(request, response);
     }
 }

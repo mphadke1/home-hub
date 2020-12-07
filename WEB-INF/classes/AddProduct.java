@@ -27,7 +27,7 @@ public class AddProduct extends HttpServlet {
         Utilities utility = new Utilities(request,pw);
 		utility.printHtml("Header.html");
 		utility.printNavbar();
-		utility.printHtml("LeftNavigationBar.html");
+		utility.printHtml("LeftNavigationBar1.html");
 
         String body = 
           "            <div class='col-12 col-sm-9'>";
@@ -48,7 +48,7 @@ public class AddProduct extends HttpServlet {
         + "                        <div class='form-group'>"
         + "                            <label for='productType'><strong>Select Product Type</strong></label>"
         + "                            <select name='producttype' id='productType' class='form-control' required>"
-        + "                                <option value='tv'>TV</option>"
+        + "                                <option value='tv' selected>TV</option>"
         + "                                <option value='soundSystem'>Sound System</option>"
         + "                                <option value='phone'>Phone</option>"
         + "                                <option value='laptop'>Laptop</option>"
@@ -94,7 +94,7 @@ public class AddProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NumberFormatException {
     
         String msg = MySqlDataStoreUtilities.addproducts(
-            request.getParameter("productType"),
+            "tv",
             request.getParameter("productName"),
             Double.parseDouble(request.getParameter("productPrice")),
             "newtv.webp", // TODO: handle file upload

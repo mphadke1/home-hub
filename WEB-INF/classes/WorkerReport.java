@@ -33,11 +33,11 @@ public class WorkerReport extends HttpServlet
             
             utility.printHtml("Header.html");
             utility.printNavbar();
-            utility.printHtml("LeftNavigationBar.html");
 
             String body =
-              "            <div class='col-12 col-sm-9'>"
-            + "                <h1 class='mb-3'>Worker Data</h1>"
+              "        <div class='container mt-3 bg-light'>"
+            + "            <div class='col-12 col-sm-9'>"
+            + "                <h1 class='mb-3'>Worker Reports</h1>"
             + "                <hr>"
             + "                <h4 class='mb-3'>Workers with Highest Rating</h4>"
             + "                <table class='gridDataTable display'>"
@@ -170,7 +170,7 @@ public class WorkerReport extends HttpServlet
             + "                </table>"
             + "            </div>"
             + "        </div>"
-            + "    </div>"
+            // + "    </div>"
             + "    <script type='text/javascript' src=\"https://www.gstatic.com/charts/loader.js\"></script>"
             + "    <script type='text/javascript' src='salesReport.js'></script>";
 
